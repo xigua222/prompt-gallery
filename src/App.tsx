@@ -3,7 +3,8 @@ import { Artwork, Language } from './types';
 import { artworks as originalArtworks, categories, models } from './data';
 import { ArtCard } from './components/ArtCard';
 import { ArtModal } from './components/ArtModal';
-import { Search, X, Github, ExternalLink } from 'lucide-react';
+import { SubmitModal } from './components/SubmitModal';
+import { Search, X, Github, Plus } from 'lucide-react';
 import { t } from './locales';
 
 const NAV_CATEGORIES = ["All", ...categories, "Favorites"];
@@ -25,6 +26,7 @@ export default function App() {
   const [selectedArt, setSelectedArt] = useState<Artwork | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [artworks] = useState<Artwork[]>(() => shuffleArray(originalArtworks));
+  const [showSubmit, setShowSubmit] = useState(false);
 
   const labels = t[lang];
 
@@ -73,8 +75,6 @@ export default function App() {
     });
   }, [activeCategory, activeModel, searchQuery, likedIds]);
 
-  const submitUrl = `https://github.com/${GITHUB_REPO}/issues/new?labels=submission,pending&template=submit.md&title=[投稿]+`;
-
   return (
     <div className="min-h-screen selection:bg-stone-200">
       <header className="pt-12 pb-6 px-6 border-b border-stone-200/50 bg-[#FAFAFA]/80 backdrop-blur-lg sticky top-0 z-30">
@@ -89,15 +89,13 @@ export default function App() {
           </div>
 
           <div className="flex items-center gap-2 sm:gap-3">
-            <a
-              href={submitUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={() => setShowSubmit(true)}
               className="hidden sm:flex px-4 h-10 items-center justify-center gap-2 rounded-full border border-stone-200 bg-white/50 text-stone-500 hover:text-stone-900 hover:border-stone-400 transition-all flex-shrink-0 text-sm font-medium"
             >
-              <ExternalLink size={16} />
+              <Plus size={16} />
               {labels.submit}
-            </a>
+            </button>
             <a
               href={`https://github.com/${GITHUB_REPO}`}
               target="_blank"
@@ -232,6 +230,11 @@ export default function App() {
           onToggleLike={() => toggleLike(selectedArt.id)}
         />
       )}
+
+      <SubmitModal
+        isOpen={showSubmit}
+        onClose={() => setShowSubmit(false)}
+      />
     </div>
   );
 }
