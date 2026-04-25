@@ -7,7 +7,7 @@ import { Search, X, Github, ExternalLink } from 'lucide-react';
 import { t } from './locales';
 
 const NAV_CATEGORIES = ["All", ...categories, "Favorites"];
-const GITHUB_REPO = 'xi-lab/aura-gallery';
+const GITHUB_REPO = 'xigua222/prompt-gallery';
 
 function shuffleArray<T>(array: T[]): T[] {
   const shuffled = [...array];

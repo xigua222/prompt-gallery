@@ -6,7 +6,7 @@
 
 一个优雅的 AI 图像生成提示词画廊，展示高质量的提示词作品
 
-[在线预览](https://xi-lab.github.io/aura-gallery/)
+[在线预览](https://xigua222.github.io/prompt-gallery/)
 
 </div>
 
@@ -91,6 +91,6 @@ npm run build
 
 <div align="center">
 
-Made with ❤️ by [超级西瓜](https://github.com/superwatermelon)
+Made with ❤️ by [超级西瓜](https://github.com/xigua222)
 
 </div>
