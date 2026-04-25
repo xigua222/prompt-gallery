@@ -2,16 +2,14 @@ name: Deploy static content to Pages
 
 on:
   push:
-    branches: ['main'] # 或者根据你的主分支名称修改，比如 master
+    branches: ['main']
   workflow_dispatch:
 
-# 设置权限以允许部署到 GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# 允许多个并发的部署，但只保留最后一次（取消正在进行的因为旧提交产生的部署）
 concurrency:
   group: 'pages'
   cancel-in-progress: true
@@ -29,17 +27,17 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: 'npm'
           
       - name: Install dependencies
-        run: npm ci # 使用 ci 保证依赖版本一致
+        run: npm ci
         
       - name: Build
         run: npm run build
         
       - name: Setup Pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -49,3 +47,5 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          enablement: true
