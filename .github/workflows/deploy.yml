@@ -36,6 +36,9 @@ jobs:
       - name: Build
         run: npm run build
         
+      - name: Copy assets
+        run: cp -r public/assets dist/assets
+        
       - name: Setup Pages
         uses: actions/configure-pages@v5
         
