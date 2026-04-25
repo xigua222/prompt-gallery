@@ -1,0 +1,276 @@
+ {{
+            "id": "00088",
+            "image_key": "",
+            "category_key": "",
+            "zh_title": "",
+            "en_title": "",
+            "zh_summary": "",
+            "en_summary": "",
+            "platform":"GPT-Image2",
+            "example": "no",
+            "tags": [
+                "",
+                "",
+                ""
+            ],
+            "prompt": "帮我生成图片：以超现实主义美学风格，绘制一张动态角度的图片，展现盛夏场景。画面运用厚涂和晕染水粉技法，带有深颗粒感和颜料的涂抹肌理感，增强艺术氛围感。通过图像拼贴和轮廓提取呈现拼贴风格的贴画设计，适度留白。画面中有生机盎然的枝叶和绽开的花朵，搭配一位阴郁少女，营造出漫画感和故事感十足的氛围，具有高级的氛围感和层次感，体现矛盾冲突的视觉冲击与有机融合。比例 1:1。"
+        },
+{
+            "id": "00089",
+            "image_key": "",
+            "category_key": "",
+            "zh_title": "",
+            "en_title": "",
+            "zh_summary": "",
+            "en_summary": "",
+            "platform":"seed",
+            "example": "no",
+            "tags": [
+                "",
+                "",
+                ""
+            ],
+            "prompt": "帮我生成图片：采用中式怪诞的艺术流派，结合具有水墨质感的视觉风格，以工笔勾勒的细腻笔触，绘制出一幅如梦如幻的大场景画面。画面中展现着神话与传说中的神秘主体，通过丰富的色彩层次塑造出逼真的质感，背景的光影效果营造出诡异凄美的氛围，整体充满艺术感。比例 9:16。"
+        },
+{
+            "id": "00090",
+            "image_key": "",
+            "category_key": "",
+            "zh_title": "",
+            "en_title": "",
+            "zh_summary": "",
+            "en_summary": "",
+            "platform":"seed",
+            "example": "no",
+            "tags": [
+                "",
+                "",
+                ""
+            ],
+            "prompt": "一幅8K超高分辨率的艺术杰作，展现极致的细节和超凡的精细度。场景灵感来源于《千里江山图》，细腻描绘了中国名山大川的生动与动态，立体光效营造出神秘的氛围，同时点缀以淡雅的透明金光。整幅画作以逼真的细节和精湛的笔法精心渲染，呈现出一场视觉盛宴。"
+        },
+{
+            "id": "00091",
+            "image_key": "",
+            "category_key": "",
+            "zh_title": "",
+            "en_title": "",
+            "zh_summary": "",
+            "en_summary": "",
+            "platform":"seed",
+            "example": "no",
+            "tags": [
+                "",
+                "",
+                ""
+            ],
+            "prompt": "帮我生成图片：这是一幅具有美式复古卡通插画风，同时融合日系少女漫画与波普艺术特点的四宫格半身平面插画。画面采用高饱和度撞色搭配，以黄、粉、蓝、绿等明亮色彩形成强烈对比，带有波普艺术的视觉冲击力，线条简洁流畅，轮廓清晰，有着平面装饰感。每一格都塑造了一位典型复古漫画少女，有着放大的眼睛，卷发造型蓬松灵动，分别佩戴着蝴蝶结、花朵耳环等装饰元素，充满甜美复古感。画面无复杂光影，以平涂色彩为主，少量星光、纹理点缀增加层次感，整体呈现出复古印刷质感，且四格中少女有着不同的发型和衣服。比例 1:1。"
+        },
+{
+            "id": "00092",
+            "image_key": "",
+            "category_key": "",
+            "zh_title": "",
+            "en_title": "",
+            "zh_summary": "",
+            "en_summary": "",
+            "platform":"seed",
+            "example": "no",
+            "tags": [
+                "",
+                "",
+                ""
+            ],
+            "prompt": "Keith Haring 涂鸦风格，主体是一只线条简洁明快的小独角兽，它有着圆润的轮廓，身上的毛发用大胆的亮黄色填充，背景是充满活力的撞色几何图案，整体画面充满动感和童趣，色彩饱和度高，视觉冲击力强。比例 1:1。"
+        },
+{
+            "id": "00093",
+            "image_key": "",
+            "category_key": "",
+            "zh_title": "",
+            "en_title": "",
+            "zh_summary": "",
+            "en_summary": "",
+            "platform":"seed",
+            "example": "no",
+            "tags": [
+                "",
+                "",
+                ""
+            ],
+            "prompt": "风格： 莫奈印象派油画风格，细腻笔触，柔和色块，朦胧空气感，轻微虚焦
+主体： 室内窗边，窗外枝蔓与花朵，轻薄窗帘随风摆动
+色调： 淡紫色主调，雾蓝、灰粉、奶白，室外蓝天明亮，室内偏冷偏暗
+光线： 室外阳光明媚，室内光影朦胧，内外明暗对比强烈
+氛围： 夏末初秋，安静、忧郁、淡淡凄凉、诗意、窒息般的美感
+细节： 花朵轻晃，枝叶轻摆，窗纱飘动，空气中有柔雾感与流动的光"
+        },
+{
+            "id": "00094",
+            "image_key": "",
+            "category_key": "",
+            "zh_title": "",
+            "en_title": "",
+            "zh_summary": "",
+            "en_summary": "",
+            "platform":"gpt-image2",
+            "example": "no",
+            "tags": [
+                "",
+                "",
+                ""
+            ],
+            "prompt": "风格： 穆夏风格，新艺术风格，装饰性古典插画，流畅优美的线条，精致繁复的纹样，理想化女性美，典雅浪漫的海报艺术感。
+主体： 一位气质高雅的女性，姿态柔美端庄，面容精致宁静，头戴华丽而精巧的头饰，身穿一件带有复杂装饰花纹的长裙，服饰华美而优雅。
+陪体 / 装饰元素： 女性周围环绕着飘逸的飘带与繁茂的植物图案，包含花卉、藤蔓、叶片等装饰元素，飘带在风中轻轻舞动，与植物纹样交织成富有节奏感的构图；背景可加入圆形装饰框与边饰，强化穆夏式海报风格。
+色调： 柔和的金色、淡紫色、浅绿色为主，辅以米白和低饱和复古色彩，整体典雅、柔和、高贵。
+光线： 光线从画面一侧轻柔照射，形成温和细腻的明暗层次，使人物与装饰纹样带有朦胧而迷人的光泽。
+氛围： 优雅、浪漫、古典、梦幻，带有神秘而迷人的诗意，整体华丽精致又安静柔美。
+细节： 强调精巧头饰、复杂裙装纹样、轻盈飘带、繁复植物装饰、流畅轮廓线与细腻笔触，画面装饰丰富但不杂乱，层次清晰、构图均衡。"
+        },
+{
+            "id": "",
+            "image_key": "",
+            "category_key": "",
+            "zh_title": "",
+            "en_title": "",
+            "zh_summary": "",
+            "en_summary": "",
+            "platform":"",
+            "example": "no",
+            "tags": [
+                "",
+                "",
+                ""
+            ],
+            "prompt": " "
+        },
+{
+            "id": "",
+            "image_key": "",
+            "category_key": "",
+            "zh_title": "",
+            "en_title": "",
+            "zh_summary": "",
+            "en_summary": "",
+            "platform":"",
+            "example": "no",
+            "tags": [
+                "",
+                "",
+                ""
+            ],
+            "prompt": " "
+        },{
+            "id": "",
+            "image_key": "",
+            "category_key": "",
+            "zh_title": "",
+            "en_title": "",
+            "zh_summary": "",
+            "en_summary": "",
+            "platform":"",
+            "example": "no",
+            "tags": [
+                "",
+                "",
+                ""
+            ],
+            "prompt": " "
+        },{
+            "id": "",
+            "image_key": "",
+            "category_key": "",
+            "zh_title": "",
+            "en_title": "",
+            "zh_summary": "",
+            "en_summary": "",
+            "platform":"",
+            "example": "no",
+            "tags": [
+                "",
+                "",
+                ""
+            ],
+            "prompt": " "
+        },{
+            "id": "",
+            "image_key": "",
+            "category_key": "",
+            "zh_title": "",
+            "en_title": "",
+            "zh_summary": "",
+            "en_summary": "",
+            "platform":"",
+            "example": "no",
+            "tags": [
+                "",
+                "",
+                ""
+            ],
+            "prompt": " "
+        },{
+            "id": "",
+            "image_key": "",
+            "category_key": "",
+            "zh_title": "",
+            "en_title": "",
+            "zh_summary": "",
+            "en_summary": "",
+            "platform":"",
+            "example": "no",
+            "tags": [
+                "",
+                "",
+                ""
+            ],
+            "prompt": " "
+        },{
+            "id": "",
+            "image_key": "",
+            "category_key": "",
+            "zh_title": "",
+            "en_title": "",
+            "zh_summary": "",
+            "en_summary": "",
+            "platform":"",
+            "example": "no",
+            "tags": [
+                "",
+                "",
+                ""
+            ],
+            "prompt": " "
+        },{
+            "id": "",
+            "image_key": "",
+            "category_key": "",
+            "zh_title": "",
+            "en_title": "",
+            "zh_summary": "",
+            "en_summary": "",
+            "platform":"",
+            "example": "no",
+            "tags": [
+                "",
+                "",
+                ""
+            ],
+            "prompt": " "
+        },{
+            "id": "",
+            "image_key": "",
+            "category_key": "",
+            "zh_title": "",
+            "en_title": "",
+            "zh_summary": "",
+            "en_summary": "",
+            "platform":"",
+            "example": "no",
+            "tags": [
+                "",
+                "",
+                ""
+            ],
+            "prompt": " "
+        },
