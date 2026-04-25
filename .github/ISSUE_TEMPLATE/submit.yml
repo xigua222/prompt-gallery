@@ -1,0 +1,113 @@
+name: 投稿新提示词
+description: 提交一个新的 AI 生成提示词作品
+labels: [submission, pending]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢你的投稿！请填写以下信息。
+        
+        **提示**：审核通过后，图片会自动压缩，数据会自动更新，网站会自动部署。
+
+  - type: input
+    id: title
+    attributes:
+      label: 标题
+      description: 作品的中文标题
+      placeholder: 例如：手机闪光纯欲写真
+    validations:
+      required: true
+
+  - type: input
+    id: title-en
+    attributes:
+      label: 英文标题
+      description: 作品的英文标题（可选）
+      placeholder: 例如：Flash Mood Portrait
+    validations:
+      required: false
+
+  - type: textarea
+    id: prompt
+    attributes:
+      label: 提示词
+      description: 完整的 AI 生成提示词
+      placeholder: |
+        生成写真...
+      render: text
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: 分类
+      description: 选择作品所属分类
+      options:
+        - 人像写真
+        - 场景插画
+        - 头像插画
+        - 平面设计
+        - 产品陈列
+        - 童趣角色
+        - 出版漫画
+        - 空间建筑
+        - 风格实验
+        - 东方美学
+        - 手绘质感
+      default: 0
+    validations:
+      required: true
+
+  - type: dropdown
+    id: model
+    attributes:
+      label: 生成模型
+      description: 选择使用的 AI 生成模型
+      options:
+        - 豆包 / 即梦
+        - GPT-Image
+        - 千问
+        - 元宝
+        - Nano Banana 2
+        - 其他
+      default: 0
+    validations:
+      required: true
+
+  - type: input
+    id: tags
+    attributes:
+      label: 标签
+      description: 用逗号分隔的标签
+      placeholder: 例如：写真, 闪光灯, 韩系
+    validations:
+      required: false
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: 简介
+      description: 简短描述这个提示词的特点
+      placeholder: 例如：低角度抓拍感，适合室内暗背景与冷白皮写真。
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+
+  - type: input
+    id: image
+    attributes:
+      label: 图片
+      description: 上传图片后，将图片链接粘贴到此处（或直接在下方拖拽上传）
+      placeholder: https://github.com/user/repo/assets/...
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        **提示**：你也可以直接在下方编辑框中拖拽上传图片。
