@@ -7,7 +7,10 @@ body:
       value: |
         感谢你的投稿！请填写以下信息。
         
-        **提示**：审核通过后，图片会自动压缩，数据会自动更新，网站会自动部署。
+        **流程说明**：
+        1. 填写表单并提交 Issue
+        2. 系统自动处理图片（压缩为 WebP）并创建 PR
+        3. 审核通过后合并 PR，网站自动部署
 
   - type: input
     id: title
@@ -98,16 +101,10 @@ body:
       value: |
         ---
 
-  - type: input
+  - type: textarea
     id: image
     attributes:
       label: 图片
-      description: 上传图片后，将图片链接粘贴到此处（或直接在下方拖拽上传）
-      placeholder: https://github.com/user/repo/assets/...
+      description: 直接拖拽图片到下方编辑框上传
     validations:
-      required: false
-
-  - type: markdown
-    attributes:
-      value: |
-        **提示**：你也可以直接在下方编辑框中拖拽上传图片。
+      required: true
