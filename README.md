@@ -6,40 +6,64 @@
 
 一个优雅的 AI 图像生成提示词画廊，展示高质量的提示词作品
 
-[在线预览](https://xi-lab.github.io/aura-gallery/) | [投稿](https://github.com/xi-lab/aura-gallery/issues/new?labels=submission,pending&template=submit.md&title=[投稿]+)
+[在线预览](https://xi-lab.github.io/aura-gallery/)
 
 </div>
 
 ---
 
-## 功能特点
+## ✨ 功能特点
 
-- **瀑布流布局** - 响应式设计，适配各种屏幕尺寸
-- **分类筛选** - 按分类和生成模型筛选作品
-- **搜索功能** - 按标题、提示词、作者或标签搜索
-- **收藏功能** - 本地存储收藏的作品
-- **中英文切换** - 支持中英文界面
-- **投稿系统** - 通过 GitHub Issues 提交新作品
+### 🎨 精美展示
+- **瀑布流布局** - 响应式设计，完美适配桌面、平板、手机
+- **流畅动画** - 丝滑的过渡效果和交互体验
+- **高清图片** - 每张作品都经过优化，加载快速
 
-## 分类
+### 🔍 强大搜索
+- 按标题、提示词、作者搜索
+- 按分类筛选（人像写真、场景插画、平面设计等）
+- 按生成模型筛选（豆包/即梦、GPT-Image、千问、元宝等）
 
-| 中文 | English |
-|------|---------|
-| 人像写真 | Portrait |
-| 场景插画 | Scene Illustration |
-| 头像插画 | Avatar Illustration |
-| 平面设计 | Graphic Design |
-| 产品陈列 | Product Display |
-| 童趣角色 | Playful Characters |
-| 出版漫画 | Comics |
-| 空间建筑 | Architecture |
-| 风格实验 | Style Experiment |
-| 东方美学 | Oriental Aesthetics |
-| 手绘质感 | Handmade Texture |
+### 💡 提示词复制
+- 一键复制完整提示词
+- 查看标签和分类信息
+- 支持中英文界面切换
 
-## 本地运行
+### ❤️ 收藏功能
+- 本地收藏喜欢的作品
+- 快速访问收藏夹
 
-**前置条件：** Node.js 18+
+---
+
+## 📂 作品分类
+
+| 分类 | 说明 |
+|------|------|
+| 人像写真 | 光感写真、社交人像、情绪人像等 |
+| 场景插画 | 叙事场景、影视叙事、绘本场景 |
+| 头像插画 | 头像转绘、风格化头像 |
+| 平面设计 | 图形版式、海报设计 |
+| 产品陈列 | 产品展示、物件陈列 |
+| 童趣角色 | 可爱角色、童趣风格 |
+| 出版漫画 | 连环出版、漫画风格 |
+| 空间建筑 | 空间构筑、建筑设计 |
+| 风格实验 | 抽象实验、风格探索 |
+| 东方美学 | 东方意象、国风风格 |
+| 手绘质感 | 手作质感、艺术风格 |
+
+---
+
+## 🛠 支持的生成模型
+
+- **豆包 / 即梦** - 字节跳动 AI 图像生成
+- **GPT-Image** - OpenAI 图像生成
+- **千问** - 阿里云通义千问
+- **元宝** - 腾讯混元
+- **Nano Banana 2** - 其他模型
+
+---
+
+## 🚀 本地运行
 
 ```bash
 # 安装依赖
@@ -52,46 +76,21 @@ npm run dev
 npm run build
 ```
 
-## 投稿指南
+---
 
-1. 点击页面右上角的「投稿」按钮
-2. 在 GitHub Issues 页面填写投稿表单
-3. 等待审核通过后，作品将被添加到画廊
+## 📦 技术栈
 
-## 技术栈
-
-- **框架：** React + Vite
-- **样式：** Tailwind CSS
-- **动画：** Framer Motion
-- **图标：** Lucide Icons
-- **部署：** GitHub Pages
-
-## 项目结构
-
-```
-aura-gallery/
-├── public/
-│   └── assets/          # 图片资源
-├── src/
-│   ├── components/      # React 组件
-│   ├── data.ts          # 作品数据
-│   ├── types.ts         # TypeScript 类型定义
-│   ├── locales.ts       # 国际化文本
-│   └── App.tsx          # 主应用组件
-├── projectnext/         # 原始数据源
-└── .github/
-    ├── workflows/       # GitHub Actions
-    └── ISSUE_TEMPLATE/  # Issue 模板
-```
-
-## 许可证
-
-本项目采用 MIT 许可证。作品图片和提示词版权归原作者所有。
+- **React** - 前端框架
+- **Vite** - 构建工具
+- **Tailwind CSS** - 样式框架
+- **Framer Motion** - 动画库
+- **Lucide Icons** - 图标库
+- **GitHub Pages** - 静态部署
 
 ---
 
 <div align="center">
 
-Made with ❤️ by [xi-lab](https://github.com/xi-lab)
+Made with ❤️ by [超级西瓜](https://github.com/superwatermelon)
 
 </div>
