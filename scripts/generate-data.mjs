@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 const promptsPath = 'projectnext/prompts.json';
-const assetDir = 'public/assets';
+const assetDir = 'public/images';
 const dataPath = 'src/data.ts';
 
 const raw = fs.readFileSync(promptsPath, 'utf-8');

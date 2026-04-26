@@ -93,7 +93,7 @@ function compressImage(inputPath, outputPath) {
 }
 
 function generateId() {
-  const existing = fs.readdirSync('public/assets')
+  const existing = fs.readdirSync('public/images')
     .filter(f => /^\d+\.webp$/.test(f))
     .map(f => parseInt(f.replace('.webp', '')));
   const max = existing.length > 0 ? Math.max(...existing) : 0;
@@ -130,7 +130,7 @@ async function main() {
   console.log('Generated ID:', id);
   
   const tempImage = `/tmp/${id}_temp`;
-  const finalImage = `public/assets/${id}.webp`;
+  const finalImage = `public/images/${id}.webp`;
   
   console.log('Downloading image from:', parsed.imageUrl);
   await downloadFile(parsed.imageUrl, tempImage);
