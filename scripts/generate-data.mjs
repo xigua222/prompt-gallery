@@ -13,7 +13,7 @@ const existingAssets = fs.readdirSync(assetDir).filter(f => /\.webp$/i.test(f));
 function findAssetFile(imageKey) {
   if (!imageKey) return null;
   const found = existingAssets.find(f => f.startsWith(imageKey + '.'));
-  return found ? `./assets/${found}` : null;
+  return found ? `./images/${found}` : null;
 }
 
 function mapPlatform(platform) {
