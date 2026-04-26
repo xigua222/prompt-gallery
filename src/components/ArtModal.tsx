@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Artwork, Language } from '../types';
 import { Copy, Check, X, Heart, Tag } from 'lucide-react';
 import { t } from '../locales';
+import { getImageUrl } from '../utils';
 
 interface ArtModalProps {
   art: Artwork;
@@ -57,7 +58,7 @@ export function ArtModal({ art, lang, onClose, isLiked, onToggleLike }: ArtModal
 
           <div className="w-full md:w-3/5 lg:w-2/3 bg-stone-100 flex items-center justify-center overflow-hidden">
             <img
-              src={art.imageUrl}
+              src={getImageUrl(art.imageUrl)}
               alt={displayTitle}
               className="max-w-full max-h-[90vh] object-contain"
             />

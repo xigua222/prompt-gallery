@@ -2,6 +2,7 @@ import React from 'react';
 import { Artwork, Language } from '../types';
 import { Heart } from 'lucide-react';
 import { t } from '../locales';
+import { getImageUrl } from '../utils';
 
 interface ArtCardProps {
   art: Artwork;
@@ -23,7 +24,7 @@ export function ArtCard({ art, lang, isLiked, onToggleLike, onClick }: ArtCardPr
       style={{ aspectRatio: aspectRatio }}
     >
       <img
-        src={art.imageUrl}
+        src={getImageUrl(art.imageUrl)}
         alt={displayTitle}
         loading="lazy"
         decoding="async"
