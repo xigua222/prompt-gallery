@@ -88,7 +88,7 @@ export const modelFamilies: ModelFamily[] = [
       { id: "sdxl", name: "SDXL", releaseDate: "2023-07", description: "高分辨率（1024px）基座，生态最丰富的版本之一。", descriptionEn: "1024px high-resolution base, one of the richest ecosystems.", active: true, scenes: ["文生图", "图生图与编辑"] },
       { id: "sdxl-turbo", name: "SDXL Turbo", releaseDate: "2023-11", description: "单步实时生成，速度极快。", descriptionEn: "Single-step real-time generation.", active: false, scenes: ["文生图"] },
       { id: "sd-3-0", name: "SD 3.0", releaseDate: "2024-02", description: "早期预览，混合架构。", descriptionEn: "Early preview with hybrid architecture.", active: false, scenes: ["文生图"] },
-      { id: "sd-3-5", name: "SD 3.5", releaseDate: "2024-10", description: "当前最新开源版本（Large/Large Turbo/Medium），文字渲染大幅提升。", descriptionEn: "Latest open release (Large/Large Turbo/Medium) with major typography improvements.", active: true, scenes: ["文生图", "图生图与编辑"], apiPricing: "API 按图片计费（约 $0.01–0.05/图，视分辨率与步数），开源权重可免费本地部署", apiPricingEn: "API billed per image (approx $0.01–0.05/image depending on resolution/steps); open weights free for local use" },
+      { id: "sd-3-5", name: "SD 3.5", releaseDate: "2024-10", description: "当前最新开源版本（Large/Large Turbo/Medium），文字渲染大幅提升。", descriptionEn: "Latest open release (Large/Large Turbo/Medium) with major typography improvements.", active: true, scenes: ["文生图", "图生图与编辑"], apiPricing: "官方 API：Large $0.065/张、Large Turbo $0.04/张、Medium $0.035/张（1 credit=$0.01）；开源权重免费本地部署", apiPricingEn: "Official API: Large $0.065, Large Turbo $0.04, Medium $0.035 per image (1 credit=$0.01); open weights free for local use" },
     ],
   },
   {
@@ -102,13 +102,13 @@ export const modelFamilies: ModelFamily[] = [
     apiDocs: "https://docs.bfl.ai",
     platforms: ["flux", "leonardo", "liblib", "civitai", "krea"],
     versions: [
-      { id: "flux-1", name: "FLUX.1", releaseDate: "2024-08", description: "开源基座（dev/schnell），社区生态爆发。", descriptionEn: "Open base models (dev/schnell) that ignited the community.", active: true, scenes: ["文生图", "图生图与编辑"] },
+      { id: "flux-1", name: "FLUX.1", releaseDate: "2024-08", description: "开源基座（dev/schnell），社区生态爆发。", descriptionEn: "Open base models (dev/schnell) that ignited the community.", active: true, scenes: ["文生图", "图生图与编辑"], apiPricing: "官方 API：pro $0.05/MP、dev $0.025/MP（1MP≈1024²）；开源权重免费本地部署", apiPricingEn: "Official API: pro $0.05/MP, dev $0.025/MP (1MP≈1024²); open weights free for local use" },
       { id: "flux-1-1", name: "FLUX.1.1 Pro", releaseDate: "2024-10", description: "Pro 档速度与质量优化。", descriptionEn: "Pro tier with speed and quality optimizations.", active: false, scenes: ["文生图"] },
       { id: "flux-1-kontext", name: "FLUX.1 Kontext", releaseDate: "2025-05", description: "引入上下文/多图理解能力。", descriptionEn: "Introduced context/multi-image understanding.", active: false, scenes: ["图生图与编辑"] },
-      { id: "flux-2", name: "FLUX.2", releaseDate: "2025-11", description: "新一代架构，排版与真实感再升级。", descriptionEn: "Next-gen architecture with better typography and realism.", active: true, scenes: ["文生图", "海报与平面设计"] },
-      { id: "flux-2-max", name: "FLUX.2 Max", releaseDate: "2025-12", description: "旗舰档位，最高质量输出。", descriptionEn: "Flagship tier with the highest quality output.", active: false, scenes: ["文生图"] },
-      { id: "flux-2-klein", name: "FLUX.2 Klein", releaseDate: "2026-01", description: "轻量 4B/9B 模型，本地运行友好。", descriptionEn: "Lightweight 4B/9B models, local-friendly.", active: true, scenes: ["文生图"] },
-      { id: "flux-3", name: "FLUX 3", releaseDate: "2026-07", description: "当前最新，统一多模态（图像+视频）。", descriptionEn: "Latest release, unified multimodal (image+video).", active: true, scenes: ["文生图", "图生图与编辑"] },
+      { id: "flux-2", name: "FLUX.2", releaseDate: "2025-11", description: "新一代架构，排版与真实感再升级。", descriptionEn: "Next-gen architecture with better typography and realism.", active: true, scenes: ["文生图", "海报与平面设计"], apiPricing: "官方 API：pro $0.03/MP、flex $0.05/MP（1MP≈1024²）", apiPricingEn: "Official API: pro $0.03/MP, flex $0.05/MP (1MP≈1024²)" },
+      { id: "flux-2-max", name: "FLUX.2 Max", releaseDate: "2025-12", description: "旗舰档位，最高质量输出。", descriptionEn: "Flagship tier with the highest quality output.", active: false, scenes: ["文生图"], apiPricing: "官方 API：首 MP $0.07，之后 $0.03/MP", apiPricingEn: "Official API: $0.07 first MP, then $0.03/MP" },
+      { id: "flux-2-klein", name: "FLUX.2 Klein", releaseDate: "2026-01", description: "轻量 4B/9B 模型，本地运行友好。", descriptionEn: "Lightweight 4B/9B models, local-friendly.", active: true, scenes: ["文生图"], apiPricing: "官方 API：9B $0.015+$0.002/MP、4B $0.014+$0.001/MP", apiPricingEn: "Official API: 9B $0.015+$0.002/MP, 4B $0.014+$0.001/MP" },
+      { id: "flux-3", name: "FLUX 3", releaseDate: "2026-07", description: "当前最新，统一多模态（图像+视频）。", descriptionEn: "Latest release, unified multimodal (image+video).", active: true, scenes: ["文生图", "图生图与编辑"], apiPricing: "图像档位官方定价未公布（视频档已公布），详见 BFL 定价页", apiPricingEn: "Official image pricing not yet published (video tiers available); see bfl.ai/pricing" },
     ],
   },
   {
@@ -125,7 +125,7 @@ export const modelFamilies: ModelFamily[] = [
       { id: "dalle-2", name: "DALL-E 2", releaseDate: "2022-04", description: "初代开放 API 图像模型。", descriptionEn: "First publicly available image API model.", active: false, scenes: ["文生图"] },
       { id: "dalle-3", name: "DALL-E 3", releaseDate: "2023-08", description: "自然语言理解大幅增强。", descriptionEn: "Much better natural language understanding.", active: false, scenes: ["文生图"] },
       { id: "gpt-image-1", name: "GPT Image", releaseDate: "2025-03", description: "对话式生成，取代 DALL-E 3。", descriptionEn: "Conversational generation, replacing DALL-E 3.", active: false, scenes: ["文生图", "图生图与编辑"] },
-      { id: "gpt-image-2", name: "GPT Image 2", releaseDate: "2026-04", description: "当前最新版本，速度与细节全面提升，集成于 ChatGPT 与 API。", descriptionEn: "Latest version with faster, more detailed generation, in ChatGPT and the API.", active: true, scenes: ["文生图", "图生图与编辑", "海报与平面设计"], apiPricing: "API 按图计费（约 $0.02–0.09/图，视分辨率档位），ChatGPT 内免费额度使用", apiPricingEn: "API billed per image (approx $0.02–0.09/image by tier); free quota inside ChatGPT" },
+      { id: "gpt-image-2", name: "GPT Image 2", releaseDate: "2026-04", description: "当前最新版本，速度与细节全面提升，集成于 ChatGPT 与 API。", descriptionEn: "Latest version with faster, more detailed generation, in ChatGPT and the API.", active: true, scenes: ["文生图", "图生图与编辑", "海报与平面设计"], apiPricing: "API 按 token 计费（输出 $30/1M），1024² 约：低质 $0.006 / 中质 $0.053 / 高质 $0.211 每张", apiPricingEn: "API billed per token ($30/1M output); 1024² approx: low $0.006 / medium $0.053 / high $0.211 per image" },
     ],
   },
   {
@@ -140,9 +140,9 @@ export const modelFamilies: ModelFamily[] = [
     platforms: ["gemini"],
     versions: [
       { id: "nb-1", name: "Nano Banana", releaseDate: "2025-08", description: "Gemini 2.5 Flash Image，初代发布。", descriptionEn: "Gemini 2.5 Flash Image, initial release.", active: false, scenes: ["文生图", "人像写真"] },
-      { id: "nb-pro", name: "Nano Banana Pro", releaseDate: "2025-11", description: "Gemini 3 Pro Image，旗舰档位。", descriptionEn: "Gemini 3 Pro Image, flagship tier.", active: false, scenes: ["文生图", "图生图与编辑"] },
-      { id: "nb-2", name: "Nano Banana 2", releaseDate: "2026-02", description: "Gemini 3.1 Flash Image，主流档位。", descriptionEn: "Gemini 3.1 Flash Image, mainstream tier.", active: true, scenes: ["文生图", "图生图与编辑", "人像写真"] },
-      { id: "nb-2-lite", name: "Nano Banana 2 Lite", releaseDate: "2026-06", description: "轻量档位，速度优先，成本更低。", descriptionEn: "Lite tier, speed-first and lower cost.", active: true, scenes: ["文生图"] },
+      { id: "nb-pro", name: "Nano Banana Pro", releaseDate: "2025-11", description: "Gemini 3 Pro Image，旗舰档位。", descriptionEn: "Gemini 3 Pro Image, flagship tier.", active: false, scenes: ["文生图", "图生图与编辑"], apiPricing: "Gemini API：标准档约 $0.134/张（1K/2K）～$0.24/张（4K）", apiPricingEn: "Gemini API: ~$0.134 (1K/2K) to $0.24 (4K) per image at standard tier" },
+      { id: "nb-2", name: "Nano Banana 2", releaseDate: "2026-02", description: "Gemini 3.1 Flash Image，主流档位。", descriptionEn: "Gemini 3.1 Flash Image, mainstream tier.", active: true, scenes: ["文生图", "图生图与编辑", "人像写真"], apiPricing: "Gemini API：标准档约 $0.067/张（1K）、$0.101（2K）、$0.151（4K）", apiPricingEn: "Gemini API: ~$0.067 (1K), $0.101 (2K), $0.151 (4K) per image at standard tier" },
+      { id: "nb-2-lite", name: "Nano Banana 2 Lite", releaseDate: "2026-06", description: "轻量档位，速度优先，成本更低。", descriptionEn: "Lite tier, speed-first and lower cost.", active: true, scenes: ["文生图"], apiPricing: "Gemini API：轻量档，价格低于标准档（具体见官方定价页）", apiPricingEn: "Gemini API: Lite tier, cheaper than standard (see official pricing)" },
     ],
   },
   {
@@ -157,9 +157,9 @@ export const modelFamilies: ModelFamily[] = [
     platforms: ["jimeng"],
     versions: [
       { id: "seedream-4", name: "Seedream 4.0", releaseDate: "2025-09", description: "中文文字渲染与风格表现标杆。", descriptionEn: "Benchmark for Chinese typography and style.", active: false, scenes: ["文生图", "人像写真"] },
-      { id: "seedream-5-lite", name: "Seedream 5.0 Lite", releaseDate: "2026", description: "轻量档位，速度与成本优化。", descriptionEn: "Lite tier with speed and cost optimizations.", active: true, scenes: ["文生图"] },
+      { id: "seedream-5-lite", name: "Seedream 5.0 Lite", releaseDate: "2026", description: "轻量档位，速度与成本优化。", descriptionEn: "Lite tier with speed and cost optimizations.", active: true, scenes: ["文生图"], apiPricing: "火山引擎 API 参考：约 ¥0.22/张（第三方报道，以控制台账单为准）", apiPricingEn: "Volcano Engine API (3rd-party ref): ~¥0.22/image; verify in console" },
       { id: "seedream-5", name: "Seedream 5.0", releaseDate: "2026", description: "主流档位，整体质量提升。", descriptionEn: "Mainstream tier with overall quality gains.", active: true, scenes: ["文生图", "人像写真"] },
-      { id: "seedream-5-pro", name: "Seedream 5.0 Pro", releaseDate: "2026-07", description: "旗舰档位，细节与真实感最佳。", descriptionEn: "Flagship tier with the best detail and realism.", active: true, scenes: ["文生图", "人像写真", "插画创作"] },
+      { id: "seedream-5-pro", name: "Seedream 5.0 Pro", releaseDate: "2026-07", description: "旗舰档位，细节与真实感最佳。", descriptionEn: "Flagship tier with the best detail and realism.", active: true, scenes: ["文生图", "人像写真", "插画创作"], apiPricing: "火山引擎 API 参考：1K 约 ¥0.3/张、2K 约 ¥0.6/张（第三方报道，以控制台账单为准）", apiPricingEn: "Volcano Engine API (3rd-party ref): ~¥0.3 (1K) / ¥0.6 (2K) per image; verify in console" },
     ],
   },
   {
@@ -176,7 +176,7 @@ export const modelFamilies: ModelFamily[] = [
       { id: "qwen-image-1", name: "Qwen-Image", releaseDate: "2025-08", description: "开源 20B MMDiT 基座。", descriptionEn: "Open 20B MMDiT base model.", active: false, scenes: ["文生图"] },
       { id: "qwen-image-edit", name: "Qwen-Image-Edit", releaseDate: "2025-08", description: "图像编辑专用版本。", descriptionEn: "Dedicated image editing variant.", active: false, scenes: ["图生图与编辑"] },
       { id: "qwen-image-layered", name: "Qwen-Image-Layered", releaseDate: "2025-12", description: "分层生成与图层控制。", descriptionEn: "Layered generation and composition control.", active: false, scenes: ["图生图与编辑"] },
-      { id: "qwen-image-3", name: "Qwen-Image 3.0", releaseDate: "2026-07", description: "当前最新，3.0/3.0-Pro 上线千问与百炼 API。", descriptionEn: "Latest release; 3.0/3.0-Pro live on Qwen and Bailian API.", active: true, scenes: ["文生图", "海报与平面设计", "电商与产品"] },
+      { id: "qwen-image-3", name: "Qwen-Image 3.0", releaseDate: "2026-07", description: "当前最新，3.0/3.0-Pro 上线千问与百炼 API。", descriptionEn: "Latest release; 3.0/3.0-Pro live on Qwen and Bailian API.", active: true, scenes: ["文生图", "海报与平面设计", "电商与产品"], apiPricing: "百炼 API：qwen-image 系列 ¥0.25/张（3.0-Pro 静态价未公开，见控制台）", apiPricingEn: "Bailian API: qwen-image ¥0.25/image (3.0-Pro pricing in console)" },
     ],
   },
   {
@@ -190,7 +190,7 @@ export const modelFamilies: ModelFamily[] = [
     apiDocs: "https://cloud.tencent.com/document/product/1729",
     platforms: ["hunyuan"],
     versions: [
-      { id: "hunyuan-3", name: "HunyuanImage 3.0", releaseDate: "2025-09", description: "80B MoE，最大开源图像 MoE 模型。", descriptionEn: "80B MoE, the largest open-source image MoE model.", active: true, scenes: ["文生图", "人像写真"] },
+      { id: "hunyuan-3", name: "HunyuanImage 3.0", releaseDate: "2025-09", description: "80B MoE，最大开源图像 MoE 模型。", descriptionEn: "80B MoE, the largest open-source image MoE model.", active: true, scenes: ["文生图", "人像写真"], apiPricing: "腾讯云 API：混元生图 ¥0.5/张；文生图轻量版 ¥0.099/张起（月用量阶梯价）", apiPricingEn: "Tencent Cloud API: HunyuanImage ¥0.5/image; lite tier from ¥0.099/image (volume tiers)" },
       { id: "hunyuan-3-instruct", name: "3.0 Instruct", releaseDate: "2026-01", description: "指令对齐变体，控制更精准。", descriptionEn: "Instruction-tuned variant with better control.", active: false, scenes: ["文生图"] },
     ],
   },
@@ -209,7 +209,7 @@ export const modelFamilies: ModelFamily[] = [
       { id: "ideogram-2", name: "2.0", releaseDate: "2024-08", description: "速度与画质提升。", descriptionEn: "Speed and quality improvements.", active: false, scenes: ["文生图"] },
       { id: "ideogram-2a", name: "2a", releaseDate: "2025-02", description: "中档迭代版本。", descriptionEn: "Mid-tier iteration.", active: false, scenes: ["文生图"] },
       { id: "ideogram-3", name: "3.0", releaseDate: "2025-03", description: "真实感与排版再升级。", descriptionEn: "Further realism and typography gains.", active: false, scenes: ["文生图"] },
-      { id: "ideogram-4", name: "4.0", releaseDate: "2026-06", description: "首个开源权重版本（9.3B、原生 2K），支持 JSON Prompts。", descriptionEn: "First open-weights release (9.3B, native 2K) with JSON Prompts.", active: true, scenes: ["文生图", "海报与平面设计"] },
+      { id: "ideogram-4", name: "4.0", releaseDate: "2026-06", description: "首个开源权重版本（9.3B、原生 2K），支持 JSON Prompts。", descriptionEn: "First open-weights release (9.3B, native 2K) with JSON Prompts.", active: true, scenes: ["文生图", "海报与平面设计"], apiPricing: "官方 API：Turbo $0.03 / Default $0.06 / Quality $0.10 每张", apiPricingEn: "Official API: Turbo $0.03 / Default $0.06 / Quality $0.10 per image" },
     ],
   },
   {
@@ -224,7 +224,7 @@ export const modelFamilies: ModelFamily[] = [
     platforms: ["recraft"],
     versions: [
       { id: "recraft-v3", name: "Recraft V3", releaseDate: "2024-09", description: "矢量与品牌设计能力奠定口碑。", descriptionEn: "Established the brand for vectors and brand design.", active: false, scenes: ["插画创作", "海报与平面设计"] },
-      { id: "recraft-v4", name: "Recraft V4", releaseDate: "2026", description: "当前最新，生产级图像、矢量与设计资产。", descriptionEn: "Latest release; production-ready images, vectors and design assets.", active: true, scenes: ["插画创作", "海报与平面设计"] },
+      { id: "recraft-v4", name: "Recraft V4", releaseDate: "2026", description: "当前最新，生产级图像、矢量与设计资产。", descriptionEn: "Latest release; production-ready images, vectors and design assets.", active: true, scenes: ["插画创作", "海报与平面设计"], apiPricing: "官方 API：V4 $0.04/张、V4 Pro $0.25/张（单元包 $1=1000 units）", apiPricingEn: "Official API: V4 $0.04, V4 Pro $0.25 per image (pack: $1=1000 units)" },
     ],
   },
   {
@@ -238,7 +238,7 @@ export const modelFamilies: ModelFamily[] = [
     apiDocs: "https://docs.leonardo.ai",
     platforms: ["leonardo"],
     versions: [
-      { id: "phoenix-1", name: "Phoenix", releaseDate: "2025-03", description: "旗舰模型，游戏美术与概念设计专用。", descriptionEn: "Flagship model for game art and concept design.", active: true, scenes: ["文生图", "插画创作", "图生图与编辑"] },
+      { id: "phoenix-1", name: "Phoenix", releaseDate: "2025-03", description: "旗舰模型，游戏美术与概念设计专用。", descriptionEn: "Flagship model for game art and concept design.", active: true, scenes: ["文生图", "插画创作", "图生图与编辑"], apiPricing: "Leonardo API 按 PAYG 动态计费（官方价格计算器，无静态价目）", apiPricingEn: "Leonardo API is PAYG with a pricing calculator; no static rates published" },
     ],
   },
   {
