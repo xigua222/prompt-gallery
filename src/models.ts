@@ -96,12 +96,12 @@ export const modelFamilies: ModelFamily[] = [
     apiDocs: "https://platform.stability.ai",
     platforms: ["stable-diffusion", "liblib", "civitai"],
     versions: [
-      { id: "sd-1-5", name: "SD 1.5", releaseDate: "2022-10", description: "社区最经典的基座模型，至今仍被广泛使用。", descriptionEn: "The classic community base model, still widely used.", active: true, scenes: ["文生图", "模型社区"] },
-      { id: "sd-2-1", name: "SD 2.1", releaseDate: "2022-12", description: "二代架构，支持更广的生成范围。", descriptionEn: "Second-gen architecture with broader generation scope.", active: false, scenes: ["文生图"] },
-      { id: "sdxl", name: "SDXL", releaseDate: "2023-07", description: "高分辨率（1024px）基座，生态最丰富的版本之一。", descriptionEn: "1024px high-resolution base, one of the richest ecosystems.", active: true, scenes: ["文生图", "图生图与编辑"] },
-      { id: "sdxl-turbo", name: "SDXL Turbo", releaseDate: "2023-11", description: "单步实时生成，速度极快。", descriptionEn: "Single-step real-time generation.", active: false, scenes: ["文生图"] },
-      { id: "sd-3-0", name: "SD 3.0", releaseDate: "2024-02", description: "早期预览，混合架构。", descriptionEn: "Early preview with hybrid architecture.", active: false, scenes: ["文生图"] },
-      { id: "sd-3-5", name: "SD 3.5", releaseDate: "2024-10", description: "当前最新开源版本（Large/Large Turbo/Medium），文字渲染大幅提升。", descriptionEn: "Latest open release (Large/Large Turbo/Medium) with major typography improvements.", active: true, scenes: ["文生图", "图生图与编辑"], apiPrices: [{ label: "Large", price: "$0.065/张" }, { label: "Large Turbo", price: "$0.04/张" }, { label: "Medium", price: "$0.035/张" }] },
+      { id: "sd-1-5", name: "1.5", releaseDate: "2022-10", description: "社区最经典的基座模型，至今仍被广泛使用。", descriptionEn: "The classic community base model, still widely used.", active: true, scenes: ["文生图", "模型社区"] },
+      { id: "sd-2-1", name: "2.1", releaseDate: "2022-12", description: "二代架构，支持更广的生成范围。", descriptionEn: "Second-gen architecture with broader generation scope.", active: false, scenes: ["文生图"] },
+      { id: "sdxl", name: "XL", releaseDate: "2023-07", description: "高分辨率（1024px）基座，生态最丰富的版本之一。", descriptionEn: "1024px high-resolution base, one of the richest ecosystems.", active: true, scenes: ["文生图", "图生图与编辑"] },
+      { id: "sdxl-turbo", name: "XL Turbo", releaseDate: "2023-11", description: "单步实时生成，速度极快。", descriptionEn: "Single-step real-time generation.", active: false, scenes: ["文生图"] },
+      { id: "sd-3-0", name: "3.0", releaseDate: "2024-02", description: "早期预览，混合架构。", descriptionEn: "Early preview with hybrid architecture.", active: false, scenes: ["文生图"] },
+      { id: "sd-3-5", name: "3.5", releaseDate: "2024-10", description: "当前最新开源版本（Large/Large Turbo/Medium），文字渲染大幅提升。", descriptionEn: "Latest open release (Large/Large Turbo/Medium) with major typography improvements.", active: true, scenes: ["文生图", "图生图与编辑"], apiPrices: [{ label: "Large", price: "$0.065/张" }, { label: "Large Turbo", price: "$0.04/张" }, { label: "Medium", price: "$0.035/张" }] },
     ],
   },
   {
@@ -209,7 +209,7 @@ export const modelFamilies: ModelFamily[] = [
     apiDocs: "https://cloud.tencent.com/document/product/1729",
     platforms: ["hunyuan"],
     versions: [
-      { id: "hunyuan-3", name: "HunyuanImage 3.0", releaseDate: "2025-09", description: "80B MoE，最大开源图像 MoE 模型。", descriptionEn: "80B MoE, the largest open-source image MoE model.", active: true, scenes: ["文生图", "人像写真"], apiPrices: [{ label: "混元生图", price: "¥0.5/张" }, { label: "轻量版", price: "¥0.099/张起" }] },
+      { id: "hunyuan-3", name: "3.0", releaseDate: "2025-09", description: "80B MoE，最大开源图像 MoE 模型。", descriptionEn: "80B MoE, the largest open-source image MoE model.", active: true, scenes: ["文生图", "人像写真"], apiPrices: [{ label: "混元生图", price: "¥0.5/张" }, { label: "轻量版", price: "¥0.099/张起" }] },
       { id: "hunyuan-3-instruct", name: "3.0 Instruct", releaseDate: "2026-01", description: "指令对齐变体，控制更精准。", descriptionEn: "Instruction-tuned variant with better control.", active: false, scenes: ["文生图"] },
     ],
   },
@@ -284,6 +284,13 @@ export const modelFamilies: ModelFamily[] = [
     ],
   },
 ];
+
+/** 版本展示标题：家族名 + 型号（自动去重，如 Midjourney V8.2 / FLUX 3 / Ideogram 4.0） */
+export function getVersionTitle(family: ModelFamily, version: ModelVersion): string {
+  const fam = family.name.toLowerCase().replace(/[- ]/g, '');
+  const ver = version.name.toLowerCase().replace(/[- ]/g, '');
+  return ver.startsWith(fam) || ver.includes(fam) ? version.name : family.name + ' ' + version.name;
+}
 
 /** 列表页展示的活跃版本（单一模型卡片） */
 export const activeVersions = modelFamilies.flatMap(family =>

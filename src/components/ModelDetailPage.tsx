@@ -5,7 +5,7 @@ import { Language } from '../types';
 import { Header } from './Header';
 import { SubmitModal } from './SubmitModal';
 import { Favicon } from './Favicon';
-import { modelFamilies } from '../models';
+import { modelFamilies, getVersionTitle } from '../models';
 import { tools, sceneIcons } from '../tools';
 import { t } from '../locales';
 
@@ -160,7 +160,7 @@ export default function ModelDetailPage() {
             >
               <div className="flex items-center gap-3 mb-2 flex-wrap">
                 <h3 className="text-lg font-serif font-medium text-stone-900">
-                  {version.name}
+                  {getVersionTitle(family, version)}
                 </h3>
                 {version.active && (
                   <span className="inline-flex items-center px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white bg-stone-900 rounded-full">

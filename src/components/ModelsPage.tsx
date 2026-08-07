@@ -5,8 +5,8 @@ import { Language } from '../types';
 import { Header } from './Header';
 import { SubmitModal } from './SubmitModal';
 import { Favicon } from './Favicon';
-import { activeVersions } from '../models';
-import { tools, sceneIcons } from '../tools';
+import { activeVersions, getVersionTitle } from '../models';
+import { sceneIcons } from '../tools';
 import { t } from '../locales';
 
 const LANG_KEY = 'photoo_gallery_lang';
@@ -25,7 +25,6 @@ export default function ModelsPage() {
   const [searchParams] = useSearchParams();
   const labels = t[lang];
 
-  const toolById = new Map(tools.map(t => [t.id, t]));
   const highlightId = searchParams.get('model');
 
   useEffect(() => {
@@ -85,7 +84,7 @@ export default function ModelsPage() {
                   <Favicon domain={family.logoDomain} logoFile={family.logoFile} fallbackText={family.name} size={44} />
                   <div className="min-w-0">
                     <h3 className="text-xl font-serif font-medium text-stone-900 leading-tight truncate">
-                      {version.name}
+                      {getVersionTitle(family, version)}
                     </h3>
                     <p className="text-xs text-stone-500 flex items-center gap-1">
                       <CalendarDays size={11} className="text-stone-400" />
@@ -126,7 +125,7 @@ export default function ModelsPage() {
                     })}
                   </div>
                   <p className="text-[11px] text-stone-400">
-                    {family.name} · {toolById.get(family.platforms[0])?.name ?? family.developer}
+                    {family.name} · {lang === 'en' ? family.developerEn : family.developer}
                   </p>
                 </div>
               </Link>
