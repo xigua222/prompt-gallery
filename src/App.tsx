@@ -138,7 +138,7 @@ export default function App() {
       <main className="max-w-7xl mx-auto px-6 py-8 lg:py-10">
         <div className="mb-8">
           <h2 className="text-3xl md:text-4xl font-serif font-medium text-stone-900 tracking-tight">
-            Photoo AIGC
+            Photoo <span className="font-sans font-light text-stone-400 text-2xl md:text-3xl">Prompt Gallery</span>
           </h2>
           <p className="mt-2 text-sm font-sans text-stone-500">
             {labels.subtitle}

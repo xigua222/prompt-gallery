@@ -26,7 +26,7 @@ export function Header({ lang, labels, onToggleLang, onOpenSubmit }: HeaderProps
         <div className="flex items-center gap-8">
           <Link to="/" className="block flex-shrink-0">
             <h1 className="text-2xl md:text-3xl font-serif font-medium text-stone-900 tracking-tight">
-              Photoo <span className="font-sans font-light text-stone-400 text-lg md:text-xl">Prompt Gallery</span>
+              Photoo <span className="font-sans font-light text-stone-400 text-lg md:text-xl">AIGC</span>
             </h1>
             <p className="mt-1 text-[11px] font-sans tracking-wide text-stone-500 uppercase">
               {labels.subtitle}
