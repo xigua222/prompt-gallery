@@ -33,9 +33,6 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Copy images
-        run: mkdir -p dist/images && cp -r public/images/*.webp dist/images/
-
       - name: Setup Pages
         uses: actions/configure-pages@v5
 

@@ -1,14 +1,17 @@
-import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, ExternalLink, Upload, CheckCircle } from 'lucide-react';
 import { categories, models } from '../data';
+import { Language } from '../types';
+import { t } from '../locales';
 
 interface SubmitModalProps {
   isOpen: boolean;
   onClose: () => void;
+  lang: Language;
 }
 
-export function SubmitModal({ isOpen, onClose }: SubmitModalProps) {
+export function SubmitModal({ isOpen, onClose, lang }: SubmitModalProps) {
+  const labels = t[lang];
   const issueUrl = 'https://github.com/xigua222/prompt-gallery/issues/new?template=submit.yml&labels=submission,pending';
 
   return (
@@ -31,10 +34,11 @@ export function SubmitModal({ isOpen, onClose }: SubmitModalProps) {
             onClick={e => e.stopPropagation()}
           >
             <div className="flex items-center justify-between p-6 border-b border-stone-200">
-              <h2 className="text-2xl font-serif font-medium text-stone-900">投稿新提示词</h2>
+              <h2 className="text-2xl font-serif font-medium text-stone-900">{labels.submitTitle}</h2>
               <button
                 onClick={onClose}
                 className="p-2 text-stone-400 hover:text-stone-900 transition-colors"
+                aria-label={labels.close}
               >
                 <X size={24} />
               </button>
@@ -46,25 +50,19 @@ export function SubmitModal({ isOpen, onClose }: SubmitModalProps) {
                   <Upload size={32} className="text-stone-400" />
                 </div>
                 <p className="text-stone-600">
-                  点击下方按钮前往 GitHub 提交你的作品
+                  {labels.submitDescription}
                 </p>
               </div>
 
               <div className="bg-stone-50 rounded-lg p-4 space-y-3">
-                <h3 className="font-medium text-stone-900">投稿流程</h3>
+                <h3 className="font-medium text-stone-900">{labels.submitStepsTitle}</h3>
                 <ol className="space-y-2 text-sm text-stone-600">
-                  <li className="flex items-start gap-2">
-                    <span className="flex-shrink-0 w-5 h-5 rounded-full bg-stone-200 text-stone-600 text-xs flex items-center justify-center">1</span>
-                    <span>在 GitHub Issue 页面填写投稿信息</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="flex-shrink-0 w-5 h-5 rounded-full bg-stone-200 text-stone-600 text-xs flex items-center justify-center">2</span>
-                    <span>上传生成的图片（支持拖拽）</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="flex-shrink-0 w-5 h-5 rounded-full bg-stone-200 text-stone-600 text-xs flex items-center justify-center">3</span>
-                    <span>提交 Issue 等待审核</span>
-                  </li>
+                  {[labels.submitStep1, labels.submitStep2, labels.submitStep3].map((step, i) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <span className="flex-shrink-0 w-5 h-5 rounded-full bg-stone-200 text-stone-600 text-xs flex items-center justify-center">{i + 1}</span>
+                      <span>{step}</span>
+                    </li>
+                  ))}
                 </ol>
               </div>
 
@@ -72,15 +70,15 @@ export function SubmitModal({ isOpen, onClose }: SubmitModalProps) {
                 <div className="flex items-start gap-2">
                   <CheckCircle size={18} className="text-green-600 flex-shrink-0 mt-0.5" />
                   <div className="text-sm text-green-700">
-                    <p className="font-medium">审核通过后自动处理</p>
-                    <p className="text-green-600 mt-1">图片自动压缩、数据自动更新、网站自动部署</p>
+                    <p className="font-medium">{labels.submitAutoTitle}</p>
+                    <p className="text-green-600 mt-1">{labels.submitAutoDesc}</p>
                   </div>
                 </div>
               </div>
 
               <div className="text-xs text-stone-500 space-y-1">
-                <p><strong>可选分类：</strong>{categories.join('、')}</p>
-                <p><strong>支持模型：</strong>{models.join('、')}</p>
+                <p><strong>{labels.submitCategories}</strong>{categories.join('、')}</p>
+                <p><strong>{labels.submitModels}</strong>{models.join('、')}</p>
               </div>
             </div>
 
@@ -89,7 +87,7 @@ export function SubmitModal({ isOpen, onClose }: SubmitModalProps) {
                 onClick={onClose}
                 className="px-4 py-2 text-stone-600 hover:text-stone-900 transition-colors"
               >
-                取消
+                {labels.submitCancel}
               </button>
               <a
                 href={issueUrl}
@@ -98,7 +96,7 @@ export function SubmitModal({ isOpen, onClose }: SubmitModalProps) {
                 className="flex items-center gap-2 px-6 py-2 bg-stone-900 text-white rounded-lg hover:bg-stone-800 transition-colors"
               >
                 <ExternalLink size={16} />
-                前往 GitHub 投稿
+                {labels.submitGoGitHub}
               </a>
             </div>
           </motion.div>

@@ -1,4 +1,4 @@
-import { Language } from './types';
+export type Labels = typeof t.zh;
 
 export const t = {
   en: {
@@ -16,6 +16,20 @@ export const t = {
     github: "GitHub",
     allModels: "All Models",
     modelFilter: "Model",
+    toggleLanguage: "Toggle Language",
+    close: "Close",
+    submitTitle: "Submit a New Prompt",
+    submitDescription: "Click the button below to submit your artwork on GitHub.",
+    submitStepsTitle: "How it works",
+    submitStep1: "Fill in the submission form on the GitHub Issue page",
+    submitStep2: "Upload your generated image (drag & drop supported)",
+    submitStep3: "Submit the issue and wait for review",
+    submitAutoTitle: "Automated after approval",
+    submitAutoDesc: "Image auto-compressed, data auto-updated, site auto-deployed",
+    submitCategories: "Categories:",
+    submitModels: "Models:",
+    submitCancel: "Cancel",
+    submitGoGitHub: "Submit on GitHub",
     categoryMap: {
       "All": "All",
       "Favorites": "Favorites",
@@ -47,6 +61,20 @@ export const t = {
     github: "GitHub仓库",
     allModels: "全部模型",
     modelFilter: "生成模型",
+    toggleLanguage: "切换语言",
+    close: "关闭",
+    submitTitle: "投稿新提示词",
+    submitDescription: "点击下方按钮前往 GitHub 提交你的作品",
+    submitStepsTitle: "投稿流程",
+    submitStep1: "在 GitHub Issue 页面填写投稿信息",
+    submitStep2: "上传生成的图片（支持拖拽）",
+    submitStep3: "提交 Issue 等待审核",
+    submitAutoTitle: "审核通过后自动处理",
+    submitAutoDesc: "图片自动压缩、数据自动更新、网站自动部署",
+    submitCategories: "可选分类：",
+    submitModels: "支持模型：",
+    submitCancel: "取消",
+    submitGoGitHub: "前往 GitHub 投稿",
     categoryMap: {
       "All": "全部",
       "Favorites": "收藏",

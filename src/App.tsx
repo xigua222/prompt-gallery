@@ -1,14 +1,17 @@
-import React, { useState, useMemo } from 'react';
+import React, { useDeferredValue, useEffect, useMemo, useState } from 'react';
+import { AnimatePresence } from 'motion/react';
 import { Artwork, Language } from './types';
-import { artworks as originalArtworks, categories, models } from './data';
-import { ArtCard } from './components/ArtCard';
+import { artworks as originalArtworks } from './data';
+import { Header } from './components/Header';
+import { SearchBar } from './components/SearchBar';
+import { FilterBar } from './components/FilterBar';
+import { ArtworkGrid } from './components/ArtworkGrid';
 import { ArtModal } from './components/ArtModal';
 import { SubmitModal } from './components/SubmitModal';
-import { Search, X, Github, Plus } from 'lucide-react';
 import { t } from './locales';
 
-const NAV_CATEGORIES = ["All", ...categories, "Favorites"];
-const GITHUB_REPO = 'xigua222/prompt-gallery';
+const LIKES_KEY = 'photoo_gallery_liked';
+const LEGACY_LIKES_KEY = 'aura_liked_artworks';
 
 function shuffleArray<T>(array: T[]): T[] {
   const shuffled = [...array];
@@ -19,25 +22,43 @@ function shuffleArray<T>(array: T[]): T[] {
   return shuffled;
 }
 
+// 每次加载时随机展示顺序（模块级，避免组件内状态误用）
+const artworks = shuffleArray(originalArtworks);
+
+function loadLikedIds(): Set<string> {
+  try {
+    // 从旧 key 迁移到新 key
+    const legacy = localStorage.getItem(LEGACY_LIKES_KEY);
+    if (legacy) {
+      const parsed = new Set<string>(JSON.parse(legacy));
+      localStorage.setItem(LIKES_KEY, legacy);
+      localStorage.removeItem(LEGACY_LIKES_KEY);
+      return parsed;
+    }
+    const saved = localStorage.getItem(LIKES_KEY);
+    return saved ? new Set<string>(JSON.parse(saved)) : new Set();
+  } catch {
+    return new Set();
+  }
+}
+
 export default function App() {
   const [lang, setLang] = useState<Language>('zh');
   const [activeCategory, setActiveCategory] = useState("All");
   const [activeModel, setActiveModel] = useState("All");
   const [selectedArt, setSelectedArt] = useState<Artwork | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
-  const [artworks] = useState<Artwork[]>(() => shuffleArray(originalArtworks));
   const [showSubmit, setShowSubmit] = useState(false);
+  const [likedIds, setLikedIds] = useState<Set<string>>(loadLikedIds);
 
   const labels = t[lang];
+  const deferredQuery = useDeferredValue(searchQuery);
 
-  const [likedIds, setLikedIds] = useState<Set<string>>(() => {
-    try {
-      const saved = localStorage.getItem('aura_liked_artworks');
-      return saved ? new Set(JSON.parse(saved)) : new Set();
-    } catch {
-      return new Set();
-    }
-  });
+  useEffect(() => {
+    document.title = lang === 'zh'
+      ? 'Photoo Prompt Gallery - AI 生成提示词画廊'
+      : 'Photoo Prompt Gallery - AI Prompt Gallery';
+  }, [lang]);
 
   const toggleLike = (id: string, e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
@@ -48,12 +69,13 @@ export default function App() {
       } else {
         newLikes.add(id);
       }
-      localStorage.setItem('aura_liked_artworks', JSON.stringify(Array.from(newLikes)));
+      localStorage.setItem(LIKES_KEY, JSON.stringify(Array.from(newLikes)));
       return newLikes;
     });
   };
 
   const filteredArtworks = useMemo(() => {
+    const query = deferredQuery.toLowerCase();
     return artworks.filter((art) => {
       const matchesCategory =
         activeCategory === "All" ||
@@ -62,7 +84,6 @@ export default function App() {
       const matchesModel =
         activeModel === "All" || art.author === activeModel;
 
-      const query = searchQuery.toLowerCase();
       const matchesSearch =
         query === "" ||
         art.title.toLowerCase().includes(query) ||
@@ -73,167 +94,72 @@ export default function App() {
 
       return matchesCategory && matchesModel && matchesSearch;
     });
-  }, [activeCategory, activeModel, searchQuery, likedIds]);
+  }, [activeCategory, activeModel, deferredQuery, likedIds]);
+
+  const hasActiveFilters =
+    searchQuery !== "" || activeCategory !== "All" || activeModel !== "All";
+
+  const clearFilters = () => {
+    setSearchQuery("");
+    setActiveCategory("All");
+    setActiveModel("All");
+  };
 
   return (
     <div className="min-h-screen selection:bg-stone-200">
-      <header className="pt-12 pb-6 px-6 border-b border-stone-200/50 bg-[#FAFAFA]/80 backdrop-blur-lg sticky top-0 z-30">
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-8">
-          <div className="flex-1">
-            <h1 className="text-3xl md:text-4xl font-serif font-medium text-stone-900 tracking-tight">
-              Photoo <span className="font-sans font-light text-stone-400 text-2xl md:text-3xl">Prompt Gallery</span>
-            </h1>
-            <p className="mt-2 text-xs font-sans tracking-wide text-stone-500 uppercase">
-              {labels.subtitle}
-            </p>
-          </div>
+      <Header
+        lang={lang}
+        labels={labels}
+        onToggleLang={() => setLang(l => l === 'en' ? 'zh' : 'en')}
+        onOpenSubmit={() => setShowSubmit(true)}
+      />
 
-          <div className="flex items-center gap-2 sm:gap-3">
-            <button
-              onClick={() => setShowSubmit(true)}
-              className="hidden sm:flex px-4 h-10 items-center justify-center gap-2 rounded-full border border-stone-200 bg-white/50 text-stone-500 hover:text-stone-900 hover:border-stone-400 transition-all flex-shrink-0 text-sm font-medium"
-            >
-              <Plus size={16} />
-              {labels.submit}
-            </button>
-            <a
-              href={`https://github.com/${GITHUB_REPO}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-10 h-10 flex items-center justify-center rounded-full border border-stone-200 bg-white/50 text-stone-500 hover:text-stone-900 hover:border-stone-400 transition-all flex-shrink-0"
-              title={labels.github}
-            >
-              <Github size={18} />
-            </a>
-            <button
-              onClick={() => setLang(l => l === 'en' ? 'zh' : 'en')}
-              className="w-10 h-10 flex items-center justify-center rounded-full border border-stone-200 bg-white/50 text-stone-500 hover:text-stone-900 hover:border-stone-400 transition-all flex-shrink-0"
-              title="Toggle Language"
-            >
-              <span className="text-xs font-semibold font-sans">{lang === 'en' ? '中' : 'EN'}</span>
-            </button>
-          </div>
-        </div>
-      </header>
+      <main className="max-w-7xl mx-auto px-6 py-8 lg:py-10">
+        <div className="flex flex-col gap-5 mb-8">
+          <SearchBar
+            value={searchQuery}
+            onChange={setSearchQuery}
+            placeholder={labels.searchPlaceholder}
+          />
 
-      <main className="max-w-7xl mx-auto px-6 py-12 lg:py-16">
-        <div className="flex flex-col gap-6 mb-12">
-          <div className="relative w-full max-w-lg">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-stone-400">
-              <Search size={18} />
-            </div>
-            <input
-              type="text"
-              placeholder={labels.searchPlaceholder}
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-white border border-stone-200 rounded-full py-2.5 pl-10 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-stone-400 focus:border-transparent transition-all placeholder:text-stone-400/70 block"
-            />
-            {searchQuery && (
-              <button
-                onClick={() => setSearchQuery("")}
-                className="absolute inset-y-0 right-0 pr-3 flex items-center text-stone-400 hover:text-stone-600 transition-colors"
-              >
-                <X size={16} />
-              </button>
-            )}
-          </div>
-
-          <div className="flex flex-col gap-4 w-full">
-            <nav className="flex flex-wrap items-center gap-1 sm:gap-2">
-              {NAV_CATEGORIES.map((catKey) => (
-                <button
-                  key={catKey}
-                  onClick={() => setActiveCategory(catKey)}
-                  className={`px-4 py-2 text-sm font-medium transition-all duration-300 rounded-full ${
-                    activeCategory === catKey
-                      ? "bg-stone-900 text-white"
-                      : "text-stone-500 hover:text-stone-900 hover:bg-stone-200/50"
-                  }`}
-                >
-                  {labels.categoryMap[catKey] || catKey}
-                </button>
-              ))}
-            </nav>
-
-            <nav className="flex flex-wrap items-center gap-1.5 sm:gap-2">
-              <span className="text-[11px] font-semibold tracking-widest text-stone-400 uppercase mr-1 hidden md:inline-block">
-                {labels.modelFilter}
-              </span>
-              <button
-                onClick={() => setActiveModel("All")}
-                className={`px-3 py-1.5 text-xs font-medium transition-all duration-300 rounded-full border ${
-                  activeModel === "All"
-                    ? "border-stone-400 bg-stone-100 text-stone-900"
-                    : "border-transparent text-stone-500 hover:text-stone-900 hover:bg-stone-100"
-                }`}
-              >
-                {labels.allModels}
-              </button>
-              {models.map((model) => (
-                <button
-                  key={model}
-                  onClick={() => setActiveModel(model)}
-                  className={`px-3 py-1.5 text-xs font-medium transition-all duration-300 rounded-full border ${
-                    activeModel === model
-                      ? "border-stone-400 bg-stone-100 text-stone-900"
-                      : "border-transparent text-stone-500 hover:text-stone-900 hover:bg-stone-100"
-                  }`}
-                >
-                  {model}
-                </button>
-              ))}
-            </nav>
-          </div>
+          <FilterBar
+            activeCategory={activeCategory}
+            onCategoryChange={setActiveCategory}
+            activeModel={activeModel}
+            onModelChange={setActiveModel}
+            labels={labels}
+          />
         </div>
 
-        <div className="columns-1 sm:columns-2 lg:columns-3 gap-8">
-          {filteredArtworks.map((art) => (
-            <div key={art.id} className="break-inside-avoid">
-              <ArtCard
-                art={art}
-                lang={lang}
-                onClick={setSelectedArt}
-                isLiked={likedIds.has(art.id)}
-                onToggleLike={(e) => toggleLike(art.id, e)}
-              />
-            </div>
-          ))}
-        </div>
-
-        {filteredArtworks.length === 0 && (
-          <div className="text-center py-32 text-stone-400 font-serif text-xl italic flex flex-col items-center gap-4">
-            <span className="text-3xl text-stone-300">~</span>
-            <p>{labels.noArtworks}</p>
-            {(searchQuery || activeCategory !== "All" || activeModel !== "All") && (
-              <button
-                onClick={() => {
-                  setSearchQuery("");
-                  setActiveCategory("All");
-                  setActiveModel("All");
-                }}
-                className="text-sm font-sans tracking-wider uppercase underline underline-offset-4 hover:text-stone-900 transition-colors mt-2"
-              >
-                {labels.clearFilters}
-              </button>
-            )}
-          </div>
-        )}
+        <ArtworkGrid
+          artworks={filteredArtworks}
+          lang={lang}
+          likedIds={likedIds}
+          onSelect={setSelectedArt}
+          onToggleLike={toggleLike}
+          labels={labels}
+          hasActiveFilters={hasActiveFilters}
+          onClearFilters={clearFilters}
+        />
       </main>
 
-      {selectedArt && (
-        <ArtModal
-          art={selectedArt}
-          lang={lang}
-          onClose={() => setSelectedArt(null)}
-          isLiked={likedIds.has(selectedArt.id)}
-          onToggleLike={() => toggleLike(selectedArt.id)}
-        />
-      )}
+      {/* AnimatePresence 置于条件渲染外层，保证关闭动画生效 */}
+      <AnimatePresence>
+        {selectedArt && (
+          <ArtModal
+            art={selectedArt}
+            lang={lang}
+            onClose={() => setSelectedArt(null)}
+            isLiked={likedIds.has(selectedArt.id)}
+            onToggleLike={() => toggleLike(selectedArt.id)}
+          />
+        )}
+      </AnimatePresence>
 
       <SubmitModal
         isOpen={showSubmit}
         onClose={() => setShowSubmit(false)}
+        lang={lang}
       />
     </div>
   );

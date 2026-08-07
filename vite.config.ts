@@ -1,6 +1,5 @@
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
-import path from 'path';
 import { defineConfig } from 'vite';
 
 export default defineConfig(() => {
@@ -9,7 +8,7 @@ export default defineConfig(() => {
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, '.'),
+        '@': new URL('./src', import.meta.url).pathname,
       },
     },
     server: {
@@ -21,7 +20,14 @@ export default defineConfig(() => {
       sourcemap: false,
       rollupOptions: {
         output: {
-          manualChunks: undefined,
+          // 按依赖拆分 chunk，提升缓存命中率
+          manualChunks(id) {
+            if (!id.includes('node_modules')) return undefined;
+            if (id.includes('react') || id.includes('scheduler')) return 'react-vendor';
+            if (id.includes('motion')) return 'motion';
+            if (id.includes('lucide')) return 'icons';
+            return 'vendor';
+          },
         },
       },
     },
