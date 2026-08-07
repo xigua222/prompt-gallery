@@ -4,7 +4,7 @@ import { Language } from '../types';
 import { Header } from './Header';
 import { SubmitModal } from './SubmitModal';
 import { DisclaimerModal, DISCLAIMER_KEY } from './DisclaimerModal';
-import { tools, toolScenes, toolModels, modelIcons, getToolDomain, AIGCTool } from '../tools';
+import { tools, toolScenes, toolModels, modelIcons, sceneIcons, getToolDomain, AIGCTool } from '../tools';
 import { t } from '../locales';
 
 const LANG_KEY = 'photoo_gallery_lang';
@@ -122,19 +122,23 @@ export default function ToolsPage() {
             >
               {labels.toolsAll}
             </button>
-            {toolScenes.map((scene) => (
-              <button
-                key={scene}
-                onClick={() => setActiveScene(scene)}
-                className={`px-3 py-1.5 text-xs font-medium transition-all duration-300 rounded-full border ${
-                  activeScene === scene
-                    ? "border-stone-400 bg-stone-100 text-stone-900"
-                    : "border-transparent text-stone-500 hover:text-stone-900 hover:bg-stone-100"
-                }`}
-              >
-                {labels.sceneMap[scene] || scene}
-              </button>
-            ))}
+            {toolScenes.map((scene) => {
+              const SceneIcon = sceneIcons[scene] ?? Sparkles;
+              return (
+                <button
+                  key={scene}
+                  onClick={() => setActiveScene(scene)}
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium transition-all duration-300 rounded-full border ${
+                    activeScene === scene
+                      ? "border-stone-400 bg-stone-100 text-stone-900"
+                      : "border-transparent text-stone-500 hover:text-stone-900 hover:bg-stone-100"
+                  }`}
+                >
+                  <SceneIcon size={12} />
+                  {labels.sceneMap[scene] || scene}
+                </button>
+              );
+            })}
           </nav>
 
           <nav className="flex flex-wrap items-center gap-1.5 sm:gap-2" aria-label={labels.toolsSearchModel}>
@@ -151,19 +155,23 @@ export default function ToolsPage() {
             >
               {labels.toolsAll}
             </button>
-            {toolModels.map((model) => (
-              <button
-                key={model}
-                onClick={() => setActiveModel(model)}
-                className={`px-3 py-1.5 text-xs font-medium transition-all duration-300 rounded-full border ${
-                  activeModel === model
-                    ? "border-stone-400 bg-stone-100 text-stone-900"
-                    : "border-transparent text-stone-500 hover:text-stone-900 hover:bg-stone-100"
-                }`}
-              >
-                {model}
-              </button>
-            ))}
+            {toolModels.map((model) => {
+              const ModelIcon = modelIcons[model] ?? Sparkles;
+              return (
+                <button
+                  key={model}
+                  onClick={() => setActiveModel(model)}
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium transition-all duration-300 rounded-full border ${
+                    activeModel === model
+                      ? "border-stone-400 bg-stone-100 text-stone-900"
+                      : "border-transparent text-stone-500 hover:text-stone-900 hover:bg-stone-100"
+                  }`}
+                >
+                  <ModelIcon size={12} />
+                  {model}
+                </button>
+              );
+            })}
           </nav>
         </div>
 

@@ -12,14 +12,31 @@ import {
   Cloud,
   Cpu,
   Flame,
+  Image as ImageIcon,
+  LayoutTemplate,
   MessageCircle,
   Palette,
+  ShoppingBag,
   Sparkles,
   Sprout,
   Type,
+  User,
+  Users,
+  Wand2,
   Zap,
   type LucideIcon,
 } from 'lucide-react';
+
+/** 场景 → 图标映射（lucide 图标，风格统一） */
+export const sceneIcons: Record<string, LucideIcon> = {
+  "文生图": ImageIcon,
+  "图生图与编辑": Wand2,
+  "人像写真": User,
+  "插画创作": Palette,
+  "海报与平面设计": LayoutTemplate,
+  "电商与产品": ShoppingBag,
+  "模型社区": Users,
+};
 
 /** 模型 → 图标映射（lucide 图标，风格统一） */
 export const modelIcons: Record<string, LucideIcon> = {

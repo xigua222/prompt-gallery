@@ -22,9 +22,17 @@ export function DisclaimerModal({ tool, lang, onClose }: DisclaimerModalProps) {
   const [countdown, setCountdown] = useState<number | null>(null);
   const labels = t[lang];
 
-  const doOpen = () => {
+  /** 用户手势内跳转（按钮点击）→ 新标签打开，弹窗拦截器不会阻止 */
+  const jumpNow = () => {
     if (!tool) return;
     window.open(tool.url, '_blank', 'noopener,noreferrer');
+    onClose();
+  };
+
+  /** 倒计时结束自动跳转（非用户手势）→ 当前标签页跳转，避免被弹窗拦截器阻止 */
+  const autoJump = () => {
+    if (!tool) return;
+    window.location.href = tool.url;
     onClose();
   };
 
@@ -44,13 +52,18 @@ export function DisclaimerModal({ tool, lang, onClose }: DisclaimerModalProps) {
   useEffect(() => {
     if (countdown === null) return;
     if (countdown <= 0) {
-      doOpen();
+      autoJump();
       return;
     }
     const timer = setTimeout(() => setCountdown(c => (c === null ? null : c - 1)), 1000);
     return () => clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countdown]);
+
+  // 弹窗关闭或切换目标时重置倒计时，避免残留计时器继续触发跳转
+  useEffect(() => {
+    setCountdown(null);
+  }, [tool]);
 
   return (
     <AnimatePresence>
@@ -136,7 +149,7 @@ export function DisclaimerModal({ tool, lang, onClose }: DisclaimerModalProps) {
                 </button>
               ) : (
                 <button
-                  onClick={doOpen}
+                  onClick={jumpNow}
                   className="flex items-center gap-2 px-6 py-2 bg-stone-900 text-white rounded-lg hover:bg-stone-800 transition-colors"
                 >
                   <ExternalLink size={15} />
