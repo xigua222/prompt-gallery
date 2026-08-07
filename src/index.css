@@ -9,3 +9,12 @@
 body {
   @apply bg-[#FAFAFA] text-stone-900 font-sans antialiased selection:bg-stone-200 selection:text-stone-900;
 }
+
+/* 隐藏滚动条（用于单行横向滚动的筛选栏） */
+@utility scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

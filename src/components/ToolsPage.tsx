@@ -108,8 +108,8 @@ export default function ToolsPage() {
         </div>
 
         <div className="flex flex-col gap-4 mb-10">
-          <nav className="flex flex-wrap items-center gap-1.5 sm:gap-2" aria-label={labels.toolsSearchScene}>
-            <span className="text-[11px] font-semibold tracking-widest text-stone-400 uppercase mr-1 hidden md:inline-block">
+          <nav className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto whitespace-nowrap scrollbar-none" aria-label={labels.toolsSearchScene}>
+            <span className="text-[11px] font-semibold tracking-widest text-stone-400 uppercase mr-1 hidden md:inline-block flex-shrink-0">
               {labels.toolsSearchScene}
             </span>
             <button
@@ -128,7 +128,7 @@ export default function ToolsPage() {
                 <button
                   key={scene}
                   onClick={() => setActiveScene(scene)}
-                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium transition-all duration-300 rounded-full border ${
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium transition-all duration-300 rounded-full border flex-shrink-0 ${
                     activeScene === scene
                       ? "border-stone-400 bg-stone-100 text-stone-900"
                       : "border-transparent text-stone-500 hover:text-stone-900 hover:bg-stone-100"
@@ -141,8 +141,8 @@ export default function ToolsPage() {
             })}
           </nav>
 
-          <nav className="flex flex-wrap items-center gap-1.5 sm:gap-2" aria-label={labels.toolsSearchModel}>
-            <span className="text-[11px] font-semibold tracking-widest text-stone-400 uppercase mr-1 hidden md:inline-block">
+          <nav className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto whitespace-nowrap scrollbar-none" aria-label={labels.toolsSearchModel}>
+            <span className="text-[11px] font-semibold tracking-widest text-stone-400 uppercase mr-1 hidden md:inline-block flex-shrink-0">
               {labels.toolsSearchModel}
             </span>
             <button
@@ -161,7 +161,7 @@ export default function ToolsPage() {
                 <button
                   key={model}
                   onClick={() => setActiveModel(model)}
-                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium transition-all duration-300 rounded-full border ${
+                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium transition-all duration-300 rounded-full border flex-shrink-0 ${
                     activeModel === model
                       ? "border-stone-400 bg-stone-100 text-stone-900"
                       : "border-transparent text-stone-500 hover:text-stone-900 hover:bg-stone-100"
