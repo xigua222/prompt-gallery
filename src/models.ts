@@ -52,7 +52,7 @@ export interface ModelFamily {
 export const modelFamilies: ModelFamily[] = [
   {
     id: "midjourney",
-    logoFile: "midjourney.png",
+    logoFile: "midjourney.svg",
     name: "Midjourney",
     developer: "Midjourney Inc",
     developerEn: "Midjourney Inc",
