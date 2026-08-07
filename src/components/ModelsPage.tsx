@@ -80,40 +80,46 @@ export default function ModelsPage() {
                   highlighted ? "border-stone-900 ring-2 ring-stone-900" : "border-stone-200"
                 }`}
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 min-h-[44px]">
                   <Favicon domain={family.logoDomain} logoFile={family.logoFile} fallbackText={family.name} size={44} />
-                  <div className="min-w-0">
+                  <div className="min-w-0 flex-1">
                     <h3 className="text-xl font-serif font-medium text-stone-900 leading-tight truncate">
                       {getVersionTitle(family, version)}
                     </h3>
                     <p className="text-xs text-stone-500 flex items-center gap-1">
-                      <CalendarDays size={11} className="text-stone-400" />
+                      <CalendarDays size={11} className="text-stone-400 flex-shrink-0" />
                       {version.releaseDate}
                     </p>
                   </div>
                   <ChevronRight
                     size={16}
-                    className="ml-auto text-stone-300 group-hover:text-stone-900 transition-colors flex-shrink-0"
+                    className="text-stone-300 group-hover:text-stone-900 transition-colors flex-shrink-0"
                   />
                 </div>
 
-                <p className="text-sm font-sans text-stone-500 leading-relaxed">
+                <p className="text-sm font-sans text-stone-500 leading-relaxed line-clamp-2 min-h-[40px]">
                   {lang === 'en' ? version.descriptionEn : version.description}
                 </p>
 
-                {version.apiPrices && version.apiPrices.length > 0 && (
-                  <p className="text-xs font-sans text-stone-400">
-                    <span className="text-stone-500">
-                      {lang === 'en' && version.apiPrices[0].labelEn ? version.apiPrices[0].labelEn : version.apiPrices[0].label}
-                    </span>
-                    {' · '}
-                    <span className="font-medium text-stone-600">{version.apiPrices[0].price}</span>
-                    {version.apiPrices.length > 1 && ` · +${version.apiPrices.length - 1} ${labels.modelsMoreTiers}`}
-                  </p>
-                )}
+                <p className="text-xs font-sans min-h-[16px]">
+                  {version.apiPrices && version.apiPrices.length > 0 ? (
+                    <>
+                      <span className="text-stone-500">
+                        {lang === 'en' && version.apiPrices[0].labelEn ? version.apiPrices[0].labelEn : version.apiPrices[0].label}
+                      </span>
+                      <span className="text-stone-400"> · </span>
+                      <span className="font-medium text-stone-600">{version.apiPrices[0].price}</span>
+                      {version.apiPrices.length > 1 && (
+                        <span className="text-stone-400"> · +{version.apiPrices.length - 1} {labels.modelsMoreTiers}</span>
+                      )}
+                    </>
+                  ) : (
+                    <span className="text-stone-300 italic">{labels.modelsNoPricing}</span>
+                  )}
+                </p>
 
                 <div className="mt-auto flex flex-col gap-2 pt-3">
-                  <div className="flex flex-wrap gap-1.5">
+                  <div className="flex flex-wrap gap-1.5 min-h-[22px]">
                     {version.scenes.map((scene) => {
                       const SceneIcon = sceneIcons[scene] ?? Sparkles;
                       return (
