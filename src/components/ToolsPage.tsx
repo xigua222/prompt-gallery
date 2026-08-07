@@ -3,7 +3,8 @@ import { ExternalLink, Sparkles } from 'lucide-react';
 import { Language } from '../types';
 import { Header } from './Header';
 import { SubmitModal } from './SubmitModal';
-import { tools, toolScenes, toolModels } from '../tools';
+import { DisclaimerModal, DISCLAIMER_KEY } from './DisclaimerModal';
+import { tools, toolScenes, toolModels, modelIcons, getToolDomain, AIGCTool } from '../tools';
 import { t } from '../locales';
 
 const LANG_KEY = 'photoo_gallery_lang';
@@ -16,11 +17,33 @@ function loadLang(): Language {
   }
 }
 
+/** 工具网站图标：优先加载真实 favicon，失败时回退到首字母占位 */
+function ToolFavicon({ tool }: { tool: AIGCTool }) {
+  const [failed, setFailed] = useState(false);
+  if (failed) {
+    return (
+      <div className="w-9 h-9 rounded-lg bg-stone-100 border border-stone-200 flex items-center justify-center text-stone-700 font-serif text-lg font-medium flex-shrink-0">
+        {tool.name.charAt(0)}
+      </div>
+    );
+  }
+  return (
+    <img
+      src={`https://www.google.com/s2/favicons?domain=${getToolDomain(tool.url)}&sz=64`}
+      alt=""
+      loading="lazy"
+      onError={() => setFailed(true)}
+      className="w-9 h-9 rounded-lg bg-white border border-stone-200 flex-shrink-0"
+    />
+  );
+}
+
 export default function ToolsPage() {
   const [lang, setLang] = useState<Language>(loadLang);
   const [activeScene, setActiveScene] = useState("All");
   const [activeModel, setActiveModel] = useState("All");
   const [showSubmit, setShowSubmit] = useState(false);
+  const [pendingTool, setPendingTool] = useState<AIGCTool | null>(null);
 
   const labels = t[lang];
 
@@ -50,6 +73,19 @@ export default function ToolsPage() {
   const clearFilters = () => {
     setActiveScene("All");
     setActiveModel("All");
+  };
+
+  /** 外链跳转：已勾选「不再提示」则直接打开，否则弹出免责确认 */
+  const handleOpenTool = (tool: AIGCTool) => {
+    try {
+      if (localStorage.getItem(DISCLAIMER_KEY) === '1') {
+        window.open(tool.url, '_blank', 'noopener,noreferrer');
+        return;
+      }
+    } catch {
+      /* ignore */
+    }
+    setPendingTool(tool);
   };
 
   return (
@@ -147,17 +183,18 @@ export default function ToolsPage() {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {filteredTools.map((tool) => (
-              <a
+              <button
                 key={tool.id}
-                href={tool.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group bg-white border border-stone-200 rounded-lg p-6 flex flex-col gap-3 transition-shadow duration-300 hover:shadow-lg"
+                onClick={() => handleOpenTool(tool)}
+                className="group bg-white border border-stone-200 rounded-lg p-6 flex flex-col gap-3 transition-shadow duration-300 hover:shadow-lg text-left cursor-pointer"
               >
                 <div className="flex items-start justify-between gap-3">
-                  <h3 className="text-xl font-serif font-medium text-stone-900 leading-tight">
-                    {tool.name}
-                  </h3>
+                  <div className="flex items-center gap-3 min-w-0">
+                    <ToolFavicon tool={tool} />
+                    <h3 className="text-xl font-serif font-medium text-stone-900 leading-tight truncate">
+                      {tool.name}
+                    </h3>
+                  </div>
                   <ExternalLink
                     size={16}
                     className="text-stone-400 group-hover:text-stone-900 transition-colors flex-shrink-0 mt-1"
@@ -177,15 +214,18 @@ export default function ToolsPage() {
                     ))}
                   </div>
                   <div className="flex flex-wrap gap-1.5">
-                    {tool.models.map((model) => (
-                      <span key={model} className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-medium text-stone-700 bg-stone-50 border border-stone-200 rounded-full">
-                        <Sparkles size={10} />
-                        {model}
-                      </span>
-                    ))}
+                    {tool.models.map((model) => {
+                      const Icon = modelIcons[model] ?? Sparkles;
+                      return (
+                        <span key={model} className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-medium text-stone-700 bg-stone-50 border border-stone-200 rounded-full">
+                          <Icon size={10} />
+                          {model}
+                        </span>
+                      );
+                    })}
                   </div>
                 </div>
-              </a>
+              </button>
             ))}
           </div>
         )}
@@ -195,6 +235,12 @@ export default function ToolsPage() {
         isOpen={showSubmit}
         onClose={() => setShowSubmit(false)}
         lang={lang}
+      />
+
+      <DisclaimerModal
+        tool={pendingTool}
+        lang={lang}
+        onClose={() => setPendingTool(null)}
       />
     </div>
   );

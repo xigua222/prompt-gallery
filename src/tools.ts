@@ -4,6 +4,49 @@
  * 维护方式：直接编辑本文件即可，无需运行生成脚本。
  */
 
+import {
+  Atom,
+  Banana,
+  Brush,
+  CircleDashed,
+  Cloud,
+  Cpu,
+  Flame,
+  MessageCircle,
+  Palette,
+  Sparkles,
+  Sprout,
+  Type,
+  Zap,
+  type LucideIcon,
+} from 'lucide-react';
+
+/** 模型 → 图标映射（lucide 图标，风格统一） */
+export const modelIcons: Record<string, LucideIcon> = {
+  "Midjourney": Palette,
+  "Stable Diffusion": Atom,
+  "FLUX": Zap,
+  "GPT-Image": MessageCircle,
+  "Nano Banana": Banana,
+  "Seedream": Sprout,
+  "Qwen-Image": Cloud,
+  "混元": CircleDashed,
+  "Ideogram": Type,
+  "Recraft": Brush,
+  "Phoenix": Flame,
+  "Firefly": Sparkles,
+  "自研模型": Cpu,
+};
+
+/** 从工具 URL 提取域名（去除 www. 前缀） */
+export function getToolDomain(url: string): string {
+  try {
+    return new URL(url).hostname.replace(/^www\./, '');
+  } catch {
+    return url;
+  }
+}
+
 export interface AIGCTool {
   id: string;
   /** 工具/平台名称 */
