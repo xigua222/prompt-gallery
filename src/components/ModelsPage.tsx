@@ -1,11 +1,11 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { ArrowUpRight, CalendarDays, Layers, Sparkles } from 'lucide-react';
+import { CalendarDays, ChevronRight, Sparkles } from 'lucide-react';
 import { Language } from '../types';
 import { Header } from './Header';
 import { SubmitModal } from './SubmitModal';
 import { Favicon } from './Favicon';
-import { models } from '../models';
+import { activeVersions } from '../models';
 import { tools, sceneIcons } from '../tools';
 import { t } from '../locales';
 
@@ -25,7 +25,7 @@ export default function ModelsPage() {
   const [searchParams] = useSearchParams();
   const labels = t[lang];
 
-  const toolById = useMemo(() => new Map(tools.map(t => [t.id, t])), []);
+  const toolById = new Map(tools.map(t => [t.id, t]));
   const highlightId = searchParams.get('model');
 
   useEffect(() => {
@@ -70,48 +70,47 @@ export default function ModelsPage() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {models.map((model) => {
-            const highlighted = model.id === highlightId;
+          {activeVersions.map(({ family, version }) => {
+            const highlighted = family.id === highlightId;
             return (
-              <div
-                key={model.id}
-                id={`model-${model.id}`}
-                className={`bg-white border rounded-lg p-6 flex flex-col gap-3 transition-shadow duration-300 hover:shadow-lg ${
+              <Link
+                key={version.id}
+                id={`model-${family.id}`}
+                to={`/models/${family.id}`}
+                className={`group bg-white border rounded-lg p-6 flex flex-col gap-3 transition-shadow duration-300 hover:shadow-lg ${
                   highlighted ? "border-stone-900 ring-2 ring-stone-900" : "border-stone-200"
                 }`}
               >
                 <div className="flex items-center gap-3">
-                  <Favicon domain={model.logoDomain} fallbackText={model.name} size={44} />
+                  <Favicon domain={family.logoDomain} fallbackText={family.name} size={44} />
                   <div className="min-w-0">
-                    <h3 className="text-xl font-serif font-medium text-stone-900 leading-tight">
-                      {model.name}
+                    <h3 className="text-xl font-serif font-medium text-stone-900 leading-tight truncate">
+                      {version.name}
                     </h3>
-                    <p className="text-xs text-stone-500">{model.version}</p>
+                    <p className="text-xs text-stone-500 flex items-center gap-1">
+                      <CalendarDays size={11} className="text-stone-400" />
+                      {version.releaseDate}
+                    </p>
                   </div>
+                  <ChevronRight
+                    size={16}
+                    className="ml-auto text-stone-300 group-hover:text-stone-900 transition-colors flex-shrink-0"
+                  />
                 </div>
 
                 <p className="text-sm font-sans text-stone-500 leading-relaxed">
-                  {lang === 'en' ? model.descriptionEn : model.description}
+                  {lang === 'en' ? version.descriptionEn : version.description}
                 </p>
 
-                <div className="mt-auto flex flex-col gap-3 pt-3">
-                  <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-xs">
-                    <span className="text-stone-400">{labels.modelsDeveloper}</span>
-                    <span className="text-stone-700 text-right truncate">{lang === 'en' ? model.developerEn : model.developer}</span>
-                    <span className="text-stone-400">{labels.modelsRelease}</span>
-                    <span className="text-stone-700 text-right flex items-center justify-end gap-1">
-                      <CalendarDays size={11} className="text-stone-400" />
-                      {model.releaseDate}
-                    </span>
-                    <span className="text-stone-400">{labels.modelsVersion}</span>
-                    <span className="text-stone-700 text-right flex items-center justify-end gap-1 truncate">
-                      <Layers size={11} className="text-stone-400 flex-shrink-0" />
-                      {model.version}
-                    </span>
-                  </div>
+                {version.apiPricing && (
+                  <p className="text-xs font-sans text-stone-400">
+                    {lang === 'en' ? version.apiPricingEn : version.apiPricing}
+                  </p>
+                )}
 
+                <div className="mt-auto flex flex-col gap-2 pt-3">
                   <div className="flex flex-wrap gap-1.5">
-                    {model.scenes.map((scene) => {
+                    {version.scenes.map((scene) => {
                       const SceneIcon = sceneIcons[scene] ?? Sparkles;
                       return (
                         <span key={scene} className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-medium text-stone-600 bg-stone-100 rounded-full">
@@ -121,42 +120,11 @@ export default function ModelsPage() {
                       );
                     })}
                   </div>
-
-                  <div>
-                    <p className="text-[11px] font-semibold tracking-widest text-stone-400 uppercase mb-1.5">
-                      {labels.modelsFamily}
-                    </p>
-                    <div className="flex flex-wrap gap-1.5">
-                      {model.family.map((member) => (
-                        <span key={member} className="inline-flex items-center px-2 py-1 text-[11px] font-medium text-stone-600 bg-stone-100 rounded-full">
-                          {member}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div>
-                    <p className="text-[11px] font-semibold tracking-widest text-stone-400 uppercase mb-1.5">
-                      {labels.modelsPlatforms}
-                    </p>
-                    <div className="flex flex-wrap gap-1.5">
-                      {model.platforms.map((pid) => {
-                        const tool = toolById.get(pid);
-                        return (
-                          <Link
-                            key={pid}
-                            to={`/tools?tool=${pid}`}
-                            className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-medium text-stone-700 bg-stone-50 border border-stone-200 rounded-full hover:border-stone-900 hover:text-stone-900 transition-colors"
-                          >
-                            {tool?.name ?? pid}
-                            <ArrowUpRight size={10} />
-                          </Link>
-                        );
-                      })}
-                    </div>
-                  </div>
+                  <p className="text-[11px] text-stone-400">
+                    {family.name} · {toolById.get(family.platforms[0])?.name ?? family.developer}
+                  </p>
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>

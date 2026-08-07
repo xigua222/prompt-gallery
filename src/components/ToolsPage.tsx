@@ -7,7 +7,7 @@ import { SubmitModal } from './SubmitModal';
 import { DisclaimerModal, DISCLAIMER_KEY } from './DisclaimerModal';
 import { Favicon } from './Favicon';
 import { tools, toolScenes, toolModels, modelIcons, sceneIcons, getToolDomain, AIGCTool } from '../tools';
-import { models } from '../models';
+import { modelFamilies } from '../models';
 import { t } from '../locales';
 
 const LANG_KEY = 'photoo_gallery_lang';
@@ -35,8 +35,8 @@ export default function ToolsPage() {
 
   const labels = t[lang];
   const highlightId = searchParams.get('tool');
-  // 模型名称 → 模型 id（用于互链跳转模型库定位）
-  const modelIdByName = useMemo(() => new Map(models.map(m => [m.name, m.id])), []);
+  // 模型名称 → 模型家族 id（用于互链跳转模型详情页）
+  const familyIdByName = useMemo(() => new Map(modelFamilies.map(m => [m.name, m.id])), []);
 
   useEffect(() => {
     document.title = lang === 'zh'
@@ -235,11 +235,11 @@ export default function ToolsPage() {
                   <div className="flex flex-wrap gap-1.5">
                     {tool.models.map((model) => {
                       const Icon = modelIcons[model] ?? Sparkles;
-                      const modelId = modelIdByName.get(model) ?? model;
+                      const familyId = familyIdByName.get(model);
                       return (
                         <Link
                           key={model}
-                          to={`/models?model=${encodeURIComponent(modelId)}`}
+                          to={familyId ? `/models/${familyId}` : '/models'}
                           onClick={(e) => e.stopPropagation()}
                           className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-medium text-stone-700 bg-stone-50 border border-stone-200 rounded-full hover:border-stone-900 hover:text-stone-900 transition-colors"
                         >
