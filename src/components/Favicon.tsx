@@ -5,7 +5,7 @@ interface FaviconProps {
   domain: string;
   /** 加载失败时的首字母占位 */
   fallbackText: string;
-  /** 本地 logo 文件名（public/logos/，无扩展名）；不传则直接走远程源 */
+  /** 本地 logo 文件名（public/logos/，含扩展名，如 "openai.svg"）；不传则直接走远程源 */
   logoFile?: string;
   /** 尺寸（px，正方形） */
   size?: number;
@@ -34,7 +34,7 @@ export function Favicon({ domain, fallbackText, logoFile, size = 36, className =
   }
 
   const src = stage === 'local'
-    ? `/logos/${logoFile}.png`
+    ? `/logos/${logoFile}`
     : stage === 'horse'
       ? `https://icon.horse/icon/${domain}`
       : `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
