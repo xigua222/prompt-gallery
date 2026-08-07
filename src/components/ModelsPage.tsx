@@ -102,9 +102,14 @@ export default function ModelsPage() {
                   {lang === 'en' ? version.descriptionEn : version.description}
                 </p>
 
-                {version.apiPricing && (
+                {version.apiPrices && version.apiPrices.length > 0 && (
                   <p className="text-xs font-sans text-stone-400">
-                    {lang === 'en' ? version.apiPricingEn : version.apiPricing}
+                    <span className="text-stone-500">
+                      {lang === 'en' && version.apiPrices[0].labelEn ? version.apiPrices[0].labelEn : version.apiPrices[0].label}
+                    </span>
+                    {' · '}
+                    <span className="font-medium text-stone-600">{version.apiPrices[0].price}</span>
+                    {version.apiPrices.length > 1 && ` · +${version.apiPrices.length - 1} ${labels.modelsMoreTiers}`}
                   </p>
                 )}
 

@@ -177,14 +177,22 @@ export default function ModelDetailPage() {
                 {lang === 'en' ? version.descriptionEn : version.description}
               </p>
 
-              {version.apiPricing && (
-                <div className="mt-3 inline-flex items-start gap-2 bg-stone-50 border border-stone-200 rounded-lg px-3 py-2">
-                  <span className="text-[11px] font-semibold tracking-widest text-stone-400 uppercase pt-0.5">
+              {version.apiPrices && version.apiPrices.length > 0 && (
+                <div className="mt-3 bg-stone-50 border border-stone-200 rounded-lg p-3 max-w-sm">
+                  <p className="text-[11px] font-semibold tracking-widest text-stone-400 uppercase mb-1">
                     {labels.modelsApiPricing}
-                  </span>
-                  <span className="text-xs text-stone-600">
-                    {lang === 'en' ? version.apiPricingEn : version.apiPricing}
-                  </span>
+                  </p>
+                  <div className="divide-y divide-stone-200/70">
+                    {version.apiPrices.map((tier, i) => (
+                      <div key={i} className="flex items-center justify-between gap-3 py-1.5 text-xs first:pt-0.5 last:pb-0">
+                        <span className="text-stone-500">
+                          {lang === 'en' && tier.labelEn ? tier.labelEn : tier.label}
+                          {tier.note && <span className="text-stone-400"> · {tier.note}</span>}
+                        </span>
+                        <span className="font-medium text-stone-900 whitespace-nowrap">{tier.price}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               )}
 

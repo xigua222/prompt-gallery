@@ -5,11 +5,13 @@ import App from './App.tsx';
 import ToolsPage from './components/ToolsPage.tsx';
 import ModelsPage from './components/ModelsPage.tsx';
 import ModelDetailPage from './components/ModelDetailPage.tsx';
+import { ScrollToTop } from './components/ScrollToTop.tsx';
 import './index.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/tools" element={<ToolsPage />} />
