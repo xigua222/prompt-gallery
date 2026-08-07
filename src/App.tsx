@@ -136,6 +136,15 @@ export default function App() {
       />
 
       <main className="max-w-7xl mx-auto px-6 py-8 lg:py-10">
+        <div className="mb-8">
+          <h2 className="text-3xl md:text-4xl font-serif font-medium text-stone-900 tracking-tight">
+            Photoo AIGC
+          </h2>
+          <p className="mt-2 text-sm font-sans text-stone-500">
+            {labels.subtitle}
+          </p>
+        </div>
+
         <div className="flex flex-col gap-5 mb-8">
           <SearchBar
             value={searchQuery}

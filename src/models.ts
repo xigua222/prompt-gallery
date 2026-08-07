@@ -173,10 +173,14 @@ export const modelFamilies: ModelFamily[] = [
     apiDocs: "https://www.volcengine.com/docs/82379",
     platforms: ["jimeng"],
     versions: [
-      { id: "seedream-4", name: "Seedream 4.0", releaseDate: "2025-09", description: "中文文字渲染与风格表现标杆。", descriptionEn: "Benchmark for Chinese typography and style.", active: false, scenes: ["文生图", "人像写真"] },
-      { id: "seedream-5-lite", name: "Seedream 5.0 Lite", releaseDate: "2026", description: "轻量档位，速度与成本优化。", descriptionEn: "Lite tier with speed and cost optimizations.", active: true, scenes: ["文生图"], apiPrices: [{ label: "5.0 Lite", price: "约 ¥0.22/张", note: "第三方参考" }] },
-      { id: "seedream-5", name: "Seedream 5.0", releaseDate: "2026", description: "主流档位，整体质量提升。", descriptionEn: "Mainstream tier with overall quality gains.", active: true, scenes: ["文生图", "人像写真"] },
-      { id: "seedream-5-pro", name: "Seedream 5.0 Pro", releaseDate: "2026-07", description: "旗舰档位，细节与真实感最佳。", descriptionEn: "Flagship tier with the best detail and realism.", active: true, scenes: ["文生图", "人像写真", "插画创作"], apiPrices: [{ label: "1K", price: "约 ¥0.3/张", note: "第三方参考" }, { label: "2K", price: "约 ¥0.6/张", note: "第三方参考" }] },
+      { id: "seedream-1", name: "Seedream 1.0", releaseDate: "2024-05", description: "初代文生图模型，随火山 FORCE 大会发布，供即梦使用（未上 Ark）。", descriptionEn: "First text-to-image model, launched at Volcano FORCE, powering Jimeng (not on Ark).", active: false, scenes: ["文生图"] },
+      { id: "seedream-2", name: "Seedream 2.0", releaseDate: "2024-11", description: "第二代，配套 SeedEdit 图像编辑，主供即梦。", descriptionEn: "Second generation with SeedEdit editing, mainly for Jimeng.", active: false, scenes: ["文生图", "图生图与编辑"] },
+      { id: "seedream-3", name: "Seedream 3.0", releaseDate: "2025-04", description: "原生 2K，小字渲染准确率 94%（Ark: doubao-seedream-3.0-t2i）。", descriptionEn: "Native 2K with 94% small-text accuracy (Ark: doubao-seedream-3.0-t2i).", active: true, scenes: ["文生图", "海报与平面设计"] },
+      { id: "seedream-4", name: "Seedream 4.0", releaseDate: "2025-08", description: "中文文字渲染与风格表现标杆（Ark: doubao-seedream-4-0）。", descriptionEn: "Benchmark for Chinese typography and style (Ark: doubao-seedream-4-0).", active: true, scenes: ["文生图", "人像写真"] },
+      { id: "seedream-4-5", name: "Seedream 4.5", releaseDate: "2025-11", description: "细节与编辑能力优化，仍在火山引擎 Ark 在售（doubao-seedream-4-5）。", descriptionEn: "Refined detail and editing; still available on Volcano Ark (doubao-seedream-4-5).", active: true, scenes: ["文生图", "人像写真"] },
+      { id: "seedream-5-lite", name: "Seedream 5.0 Lite", releaseDate: "2026-01", description: "轻量档位，速度与成本优化（doubao-seedream-5-0-lite）。", descriptionEn: "Lite tier with speed and cost optimizations (doubao-seedream-5-0-lite).", active: true, scenes: ["文生图"], apiPrices: [{ label: "5.0 Lite", price: "约 ¥0.22/张", note: "第三方参考" }] },
+      { id: "seedream-5", name: "Seedream 5.0", releaseDate: "2026-01", description: "主流档位，整体质量提升（doubao-seedream-5-0）。", descriptionEn: "Mainstream tier with overall quality gains (doubao-seedream-5-0).", active: true, scenes: ["文生图", "人像写真"] },
+      { id: "seedream-5-pro", name: "Seedream 5.0 Pro", releaseDate: "2026-06", description: "旗舰档位，细节与真实感最佳（doubao-seedream-5-0-pro）。", descriptionEn: "Flagship tier with the best detail and realism (doubao-seedream-5-0-pro).", active: true, scenes: ["文生图", "人像写真", "插画创作"], apiPrices: [{ label: "1K", price: "约 ¥0.3/张", note: "第三方参考" }, { label: "2K", price: "约 ¥0.6/张", note: "第三方参考" }] },
     ],
   },
   {
@@ -296,7 +300,7 @@ export const modelFamilies: ModelFamily[] = [
     versions: [
       { id: "imagen-2", name: "Imagen 2", releaseDate: "2023-07", description: "第二代，真实感提升。", descriptionEn: "Second generation with improved realism.", active: false, scenes: ["文生图"] },
       { id: "imagen-3", name: "Imagen 3", releaseDate: "2024-08", description: "细节与文本渲染大幅增强。", descriptionEn: "Major gains in detail and typography.", active: false, scenes: ["文生图"] },
-      { id: "imagen-4", name: "Imagen 4", releaseDate: "2025-05", description: "当前最新，4/4 Ultra 档位，服务于 Google Flow。", descriptionEn: "Latest release (4/4 Ultra tiers), serving Google Flow.", active: true, scenes: ["文生图", "图生图与编辑"] },
+      { id: "imagen-4", name: "Imagen 4", releaseDate: "2025-05", description: "当前最新，4/4 Ultra 档位，服务于 Google Flow。", descriptionEn: "Latest release (4/4 Ultra tiers), serving Google Flow.", active: false, scenes: ["文生图", "图生图与编辑"] },
     ],
   },
   {
@@ -311,7 +315,7 @@ export const modelFamilies: ModelFamily[] = [
     versions: [
       { id: "mai-1", name: "MAI-Image-1", releaseDate: "2025-11", description: "首代接入 Bing/Copilot。", descriptionEn: "First generation in Bing/Copilot.", active: false, scenes: ["文生图"] },
       { id: "mai-2", name: "MAI-Image-2", releaseDate: "2026-03", description: "全面替换前代。", descriptionEn: "Full replacement of the previous generation.", active: false, scenes: ["文生图"] },
-      { id: "mai-2-5", name: "MAI-Image-2.5", releaseDate: "2026-05", description: "当前最新，Arena 文生图榜第 3。", descriptionEn: "Latest release, ranked #3 on the Arena leaderboard.", active: true, scenes: ["文生图", "海报与平面设计"] },
+      { id: "mai-2-5", name: "MAI-Image-2.5", releaseDate: "2026-05", description: "当前最新，Arena 文生图榜第 3。", descriptionEn: "Latest release, ranked #3 on the Arena leaderboard.", active: false, scenes: ["文生图", "海报与平面设计"] },
     ],
   },
   {
@@ -324,7 +328,7 @@ export const modelFamilies: ModelFamily[] = [
     introEn: "xAI assistant's in-house image generation series with multi-style templates.",
     platforms: ["grok"],
     versions: [
-      { id: "imagine-1", name: "Imagine 1.0", releaseDate: "2026-02", description: "当前最新，内置 Chibi 等风格模板。", descriptionEn: "Latest release with Chibi and other style templates.", active: true, scenes: ["文生图", "图生图与编辑"] },
+      { id: "imagine-1", name: "Imagine 1.0", releaseDate: "2026-02", description: "当前最新，内置 Chibi 等风格模板。", descriptionEn: "Latest release with Chibi and other style templates.", active: false, scenes: ["文生图", "图生图与编辑"] },
     ],
   },
   {
@@ -337,8 +341,8 @@ export const modelFamilies: ModelFamily[] = [
     introEn: "PixAI's in-house chat-style and character-style models for anime illustration.",
     platforms: ["pixai"],
     versions: [
-      { id: "mio-2", name: "Mio.2", releaseDate: "2026-07", description: "聊天式动漫助手模型。", descriptionEn: "Chat-style anime assistant model.", active: true, scenes: ["插画创作"] },
-      { id: "tsubaki-2", name: "Tsubaki.2", releaseDate: "2026-07", description: "多角色场景模型。", descriptionEn: "Multi-character scene model.", active: true, scenes: ["插画创作"] },
+      { id: "mio-2", name: "Mio.2", releaseDate: "2026-07", description: "聊天式动漫助手模型。", descriptionEn: "Chat-style anime assistant model.", active: false, scenes: ["插画创作"] },
+      { id: "tsubaki-2", name: "Tsubaki.2", releaseDate: "2026-07", description: "多角色场景模型。", descriptionEn: "Multi-character scene model.", active: false, scenes: ["插画创作"] },
     ],
   },
   {
@@ -351,8 +355,8 @@ export const modelFamilies: ModelFamily[] = [
     introEn: "Freepik's (rebranded Magnific in 2026) in-house and partner model series.",
     platforms: ["magnific"],
     versions: [
-      { id: "mystic", name: "Mystic", releaseDate: "2024-08", description: "FLUX 微调旗舰模型。", descriptionEn: "Flagship FLUX finetune.", active: true, scenes: ["文生图", "海报与平面设计"] },
-      { id: "f-lite", name: "F Lite", releaseDate: "2025-04", description: "开源轻量模型（与 Fal.ai 合作）。", descriptionEn: "Open lightweight model (with Fal.ai).", active: true, scenes: ["文生图"] },
+      { id: "mystic", name: "Mystic", releaseDate: "2024-08", description: "FLUX 微调旗舰模型。", descriptionEn: "Flagship FLUX finetune.", active: false, scenes: ["文生图", "海报与平面设计"] },
+      { id: "f-lite", name: "F Lite", releaseDate: "2025-04", description: "开源轻量模型（与 Fal.ai 合作）。", descriptionEn: "Open lightweight model (with Fal.ai).", active: false, scenes: ["文生图"] },
     ],
   },
 

@@ -179,7 +179,7 @@ export const tools: AIGCTool[] = [
     descriptionEn: "ByteDance image & video generation platform powered by Seedream, strong at portraits and Chinese-context scenes.",
     scenes: ["文生图", "人像写真", "插画创作"],
     models: ["Seedream"],
-    modelVersions: ["Seedream 5.0"],
+    modelVersions: ["Seedream 4.5", "Seedream 5.0"],
     logoFile: "jimeng.png",
   },
   {
@@ -443,7 +443,7 @@ export const tools: AIGCTool[] = [
     descriptionEn: "ByteDance's international AI creation app (sibling of Jimeng); image side runs Seedream 5.0 series.",
     scenes: ["文生图", "人像写真"],
     models: ["Seedream"],
-    modelVersions: ["Seedream 5.0"],
+    modelVersions: ["Seedream 4.5", "Seedream 5.0"],
   },
 
 ];
