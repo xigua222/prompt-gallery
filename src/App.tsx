@@ -8,6 +8,7 @@ import { FilterBar } from './components/FilterBar';
 import { ArtworkGrid } from './components/ArtworkGrid';
 import { ArtModal } from './components/ArtModal';
 import { SubmitModal } from './components/SubmitModal';
+import { AUTHOR_TO_MODEL, GENERAL_AUTHOR } from './modelMapping';
 import { t } from './locales';
 
 const LIKES_KEY = 'photoo_gallery_liked';
@@ -99,7 +100,10 @@ export default function App() {
         (activeCategory === "Favorites" ? likedIds.has(art.id) : art.category === activeCategory);
 
       const matchesModel =
-        activeModel === "All" || art.author === activeModel;
+        activeModel === "All" ||
+        (activeModel === GENERAL_AUTHOR
+          ? art.author === GENERAL_AUTHOR
+          : AUTHOR_TO_MODEL[art.author] === activeModel);
 
       const matchesSearch =
         query === "" ||

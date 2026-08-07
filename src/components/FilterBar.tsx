@@ -1,7 +1,15 @@
-import { categories, models } from '../data';
+import { categories } from '../data';
 import { Labels } from '../locales';
+import { modelFamilies } from '../models';
+import { AUTHOR_TO_MODEL, GENERAL_AUTHOR } from '../modelMapping';
+import { Favicon } from './Favicon';
 
 const NAV_CATEGORIES = ["All", ...categories, "Favorites"];
+
+/** 画廊在用的模型家族（去重，顺序稳定） */
+const galleryModels = [...new Set(Object.values(AUTHOR_TO_MODEL))]
+  .map(id => modelFamilies.find(f => f.id === id))
+  .filter((f): f is NonNullable<typeof f> => Boolean(f));
 
 interface FilterBarProps {
   activeCategory: string;
@@ -44,19 +52,30 @@ export function FilterBar({ activeCategory, onCategoryChange, activeModel, onMod
         >
           {labels.allModels}
         </button>
-        {models.map((model) => (
+        {galleryModels.map((family) => (
           <button
-            key={model}
-            onClick={() => onModelChange(model)}
-            className={`px-3 py-1.5 text-xs font-medium transition-all duration-300 rounded-full border ${
-              activeModel === model
+            key={family.id}
+            onClick={() => onModelChange(family.id)}
+            className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium transition-all duration-300 rounded-full border ${
+              activeModel === family.id
                 ? "border-stone-400 bg-stone-100 text-stone-900"
                 : "border-transparent text-stone-500 hover:text-stone-900 hover:bg-stone-100"
             }`}
           >
-            {model}
+            <Favicon domain={family.logoDomain} logoFile={family.logoFile} fallbackText={family.name} size={18} />
+            {family.name}
           </button>
         ))}
+        <button
+          onClick={() => onModelChange(GENERAL_AUTHOR)}
+          className={`px-3 py-1.5 text-xs font-medium transition-all duration-300 rounded-full border ${
+            activeModel === GENERAL_AUTHOR
+              ? "border-stone-400 bg-stone-100 text-stone-900"
+              : "border-transparent text-stone-500 hover:text-stone-900 hover:bg-stone-100"
+          }`}
+        >
+          {labels.generalModel}
+        </button>
       </nav>
     </div>
   );

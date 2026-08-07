@@ -6,7 +6,7 @@ import { Header } from './Header';
 import { SubmitModal } from './SubmitModal';
 import { DisclaimerModal, DISCLAIMER_KEY } from './DisclaimerModal';
 import { Favicon } from './Favicon';
-import { tools, toolScenes, toolModels, modelIcons, sceneIcons, getToolDomain, AIGCTool } from '../tools';
+import { tools, toolScenes, toolModels, sceneIcons, getToolDomain, AIGCTool } from '../tools';
 import { modelFamilies } from '../models';
 import { t } from '../locales';
 
@@ -35,8 +35,6 @@ export default function ToolsPage() {
 
   const labels = t[lang];
   const highlightId = searchParams.get('tool');
-  // 模型名称 → 模型家族 id（用于互链跳转模型详情页）
-  const familyIdByName = useMemo(() => new Map(modelFamilies.map(m => [m.name, m.id])), []);
 
   useEffect(() => {
     document.title = lang === 'zh'
@@ -156,7 +154,7 @@ export default function ToolsPage() {
               {labels.toolsAll}
             </button>
             {toolModels.map((model) => {
-              const ModelIcon = modelIcons[model] ?? Sparkles;
+              const family = modelFamilies.find(f => f.name === model);
               return (
                 <button
                   key={model}
@@ -167,7 +165,11 @@ export default function ToolsPage() {
                       : "border-transparent text-stone-500 hover:text-stone-900 hover:bg-stone-100"
                   }`}
                 >
-                  <ModelIcon size={12} />
+                  {family ? (
+                    <Favicon domain={family.logoDomain} logoFile={family.logoFile} fallbackText={family.name} size={16} />
+                  ) : (
+                    <Sparkles size={12} />
+                  )}
                   {model}
                 </button>
               );
@@ -234,16 +236,19 @@ export default function ToolsPage() {
                   </div>
                   <div className="flex flex-wrap gap-1.5">
                     {tool.models.map((model) => {
-                      const Icon = modelIcons[model] ?? Sparkles;
-                      const familyId = familyIdByName.get(model);
+                      const family = modelFamilies.find(f => f.name === model);
                       return (
                         <Link
                           key={model}
-                          to={familyId ? `/models/${familyId}` : '/models'}
+                          to={family ? `/models/${family.id}` : '/models'}
                           onClick={(e) => e.stopPropagation()}
-                          className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-medium text-stone-700 bg-stone-50 border border-stone-200 rounded-full hover:border-stone-900 hover:text-stone-900 transition-colors"
+                          className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-medium text-stone-700 bg-stone-50 border border-stone-200 rounded-full hover:border-stone-900 hover:text-stone-900 transition-colors"
                         >
-                          <Icon size={10} />
+                          {family ? (
+                            <Favicon domain={family.logoDomain} logoFile={family.logoFile} fallbackText={family.name} size={16} />
+                          ) : (
+                            <Sparkles size={10} />
+                          )}
                           {model}
                         </Link>
                       );
