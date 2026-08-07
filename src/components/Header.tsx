@@ -40,6 +40,9 @@ export function Header({ lang, labels, onToggleLang, onOpenSubmit }: HeaderProps
             <NavLink to="/tools" className={navClass}>
               {labels.toolsNav}
             </NavLink>
+            <NavLink to="/models" className={navClass}>
+              {labels.modelsNav}
+            </NavLink>
           </nav>
         </div>
 
@@ -76,6 +79,9 @@ export function Header({ lang, labels, onToggleLang, onOpenSubmit }: HeaderProps
         </NavLink>
         <NavLink to="/tools" className={navClass}>
           {labels.toolsNav}
+        </NavLink>
+        <NavLink to="/models" className={navClass}>
+          {labels.modelsNav}
         </NavLink>
       </nav>
     </header>

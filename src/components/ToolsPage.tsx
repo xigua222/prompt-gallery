@@ -1,10 +1,12 @@
 import { useEffect, useMemo, useState } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { ExternalLink, Sparkles } from 'lucide-react';
 import { Language } from '../types';
 import { Header } from './Header';
 import { SubmitModal } from './SubmitModal';
 import { DisclaimerModal, DISCLAIMER_KEY } from './DisclaimerModal';
 import { tools, toolScenes, toolModels, modelIcons, sceneIcons, getToolDomain, AIGCTool } from '../tools';
+import { models } from '../models';
 import { t } from '../locales';
 
 const LANG_KEY = 'photoo_gallery_lang';
@@ -44,14 +46,27 @@ export default function ToolsPage() {
   const [activeModel, setActiveModel] = useState("All");
   const [showSubmit, setShowSubmit] = useState(false);
   const [pendingTool, setPendingTool] = useState<AIGCTool | null>(null);
+  const [searchParams] = useSearchParams();
 
   const labels = t[lang];
+  const highlightId = searchParams.get('tool');
+  // 模型名称 → 模型 id（用于互链跳转模型库定位）
+  const modelIdByName = useMemo(() => new Map(models.map(m => [m.name, m.id])), []);
 
   useEffect(() => {
     document.title = lang === 'zh'
       ? 'AIGC 工具导航 - Photoo Prompt Gallery'
       : 'AIGC Tool Directory - Photoo Prompt Gallery';
   }, [lang]);
+
+  // 从模型库互链跳转时，定位并高亮对应工具卡片
+  useEffect(() => {
+    if (!highlightId) return;
+    const timer = setTimeout(() => {
+      document.getElementById(`tool-${highlightId}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
+    return () => clearTimeout(timer);
+  }, [highlightId]);
 
   const toggleLang = () => {
     setLang(prev => {
@@ -191,10 +206,21 @@ export default function ToolsPage() {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {filteredTools.map((tool) => (
-              <button
+              <div
                 key={tool.id}
+                id={`tool-${tool.id}`}
+                role="button"
+                tabIndex={0}
                 onClick={() => handleOpenTool(tool)}
-                className="group bg-white border border-stone-200 rounded-lg p-6 flex flex-col gap-3 transition-shadow duration-300 hover:shadow-lg text-left cursor-pointer"
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    handleOpenTool(tool);
+                  }
+                }}
+                className={`group bg-white border rounded-lg p-6 flex flex-col gap-3 transition-shadow duration-300 hover:shadow-lg text-left cursor-pointer ${
+                  highlightId === tool.id ? "border-stone-900 ring-2 ring-stone-900" : "border-stone-200"
+                }`}
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex items-center gap-3 min-w-0">
@@ -224,16 +250,22 @@ export default function ToolsPage() {
                   <div className="flex flex-wrap gap-1.5">
                     {tool.models.map((model) => {
                       const Icon = modelIcons[model] ?? Sparkles;
+                      const modelId = modelIdByName.get(model) ?? model;
                       return (
-                        <span key={model} className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-medium text-stone-700 bg-stone-50 border border-stone-200 rounded-full">
+                        <Link
+                          key={model}
+                          to={`/models?model=${encodeURIComponent(modelId)}`}
+                          onClick={(e) => e.stopPropagation()}
+                          className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-medium text-stone-700 bg-stone-50 border border-stone-200 rounded-full hover:border-stone-900 hover:text-stone-900 transition-colors"
+                        >
                           <Icon size={10} />
                           {model}
-                        </span>
+                        </Link>
                       );
                     })}
                   </div>
                 </div>
-              </button>
+              </div>
             ))}
           </div>
         )}
