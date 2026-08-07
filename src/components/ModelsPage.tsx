@@ -82,7 +82,7 @@ export default function ModelsPage() {
                 }`}
               >
                 <div className="flex items-center gap-3">
-                  <Favicon domain={family.logoDomain} fallbackText={family.name} size={44} />
+                  <Favicon domain={family.logoDomain} logoFile={family.logoFile} fallbackText={family.name} size={44} />
                   <div className="min-w-0">
                     <h3 className="text-xl font-serif font-medium text-stone-900 leading-tight truncate">
                       {version.name}

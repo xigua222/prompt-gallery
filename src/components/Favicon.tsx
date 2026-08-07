@@ -1,24 +1,26 @@
 import { useState } from 'react';
 
 interface FaviconProps {
-  /** 网站域名（不含协议） */
+  /** 网站域名（不含协议，回退源用） */
   domain: string;
   /** 加载失败时的首字母占位 */
   fallbackText: string;
+  /** 本地 logo 文件名（public/logos/，无扩展名）；不传则直接走远程源 */
+  logoFile?: string;
   /** 尺寸（px，正方形） */
   size?: number;
   /** 额外样式 */
   className?: string;
 }
 
-type SourceStage = 'horse' | 'google' | 'fallback';
+type SourceStage = 'local' | 'horse' | 'google' | 'fallback';
 
 /**
- * 品牌图标：优先加载高清图标（icon.horse，源自网站 apple-touch-icon 等高清资源），
- * 依次回退到 Google favicon 服务、首字母占位，保证任何情况都有清晰可用的图标。
+ * 品牌图标：优先加载本地自托管 logo（高清、确定正确），
+ * 依次回退到 icon.horse 高清源、Google favicon、首字母占位。
  */
-export function Favicon({ domain, fallbackText, size = 36, className = "" }: FaviconProps) {
-  const [stage, setStage] = useState<SourceStage>('horse');
+export function Favicon({ domain, fallbackText, logoFile, size = 36, className = "" }: FaviconProps) {
+  const [stage, setStage] = useState<SourceStage>(logoFile ? 'local' : 'horse');
 
   if (stage === 'fallback') {
     return (
@@ -31,16 +33,25 @@ export function Favicon({ domain, fallbackText, size = 36, className = "" }: Fav
     );
   }
 
-  const src = stage === 'horse'
-    ? `https://icon.horse/icon/${domain}`
-    : `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
+  const src = stage === 'local'
+    ? `/logos/${logoFile}.png`
+    : stage === 'horse'
+      ? `https://icon.horse/icon/${domain}`
+      : `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
+
+  const nextStage: Record<SourceStage, SourceStage> = {
+    local: 'horse',
+    horse: 'google',
+    google: 'fallback',
+    fallback: 'fallback',
+  };
 
   return (
     <img
       src={src}
       alt=""
       loading="lazy"
-      onError={() => setStage(stage === 'horse' ? 'google' : 'fallback')}
+      onError={() => setStage(nextStage[stage])}
       className={`rounded-lg bg-white border border-stone-200 flex-shrink-0 object-contain ${className}`}
       style={{ width: size, height: size }}
     />

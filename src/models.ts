@@ -33,8 +33,10 @@ export interface ModelFamily {
   /** 开发者 / 公司 */
   developer: string;
   developerEn: string;
-  /** 厂商官网域名（品牌 logo） */
+  /** 厂商官网域名（回退源） */
   logoDomain: string;
+  /** 本地 logo 文件名（public/logos/，无扩展名） */
+  logoFile: string;
   /** 家族介绍（中文） */
   intro: string;
   /** 家族介绍（英文） */
@@ -50,6 +52,7 @@ export interface ModelFamily {
 export const modelFamilies: ModelFamily[] = [
   {
     id: "midjourney",
+    logoFile: "midjourney",
     name: "Midjourney",
     developer: "Midjourney Inc",
     developerEn: "Midjourney Inc",
@@ -74,6 +77,7 @@ export const modelFamilies: ModelFamily[] = [
   },
   {
     id: "stable-diffusion",
+    logoFile: "stability",
     name: "Stable Diffusion",
     developer: "Stability AI",
     developerEn: "Stability AI",
@@ -93,6 +97,7 @@ export const modelFamilies: ModelFamily[] = [
   },
   {
     id: "flux",
+    logoFile: "blackforestlabs",
     name: "FLUX",
     developer: "Black Forest Labs",
     developerEn: "Black Forest Labs",
@@ -113,6 +118,7 @@ export const modelFamilies: ModelFamily[] = [
   },
   {
     id: "gpt-image",
+    logoFile: "openai",
     name: "GPT-Image",
     developer: "OpenAI",
     developerEn: "OpenAI",
@@ -130,6 +136,7 @@ export const modelFamilies: ModelFamily[] = [
   },
   {
     id: "nano-banana",
+    logoFile: "gemini",
     name: "Nano Banana",
     developer: "Google",
     developerEn: "Google",
@@ -147,6 +154,7 @@ export const modelFamilies: ModelFamily[] = [
   },
   {
     id: "seedream",
+    logoFile: "jimeng",
     name: "Seedream",
     developer: "字节跳动",
     developerEn: "ByteDance",
@@ -164,6 +172,7 @@ export const modelFamilies: ModelFamily[] = [
   },
   {
     id: "qwen-image",
+    logoFile: "qwen",
     name: "Qwen-Image",
     developer: "阿里巴巴",
     developerEn: "Alibaba",
@@ -181,6 +190,7 @@ export const modelFamilies: ModelFamily[] = [
   },
   {
     id: "hunyuan",
+    logoFile: "hunyuan",
     name: "混元",
     developer: "腾讯",
     developerEn: "Tencent",
@@ -196,6 +206,7 @@ export const modelFamilies: ModelFamily[] = [
   },
   {
     id: "ideogram",
+    logoFile: "ideogram",
     name: "Ideogram",
     developer: "Ideogram AI",
     developerEn: "Ideogram AI",
@@ -214,6 +225,7 @@ export const modelFamilies: ModelFamily[] = [
   },
   {
     id: "recraft",
+    logoFile: "recraft",
     name: "Recraft",
     developer: "Recraft AI",
     developerEn: "Recraft AI",
@@ -229,6 +241,7 @@ export const modelFamilies: ModelFamily[] = [
   },
   {
     id: "phoenix",
+    logoFile: "leonardo",
     name: "Phoenix",
     developer: "Leonardo.Ai",
     developerEn: "Leonardo.Ai",
@@ -244,6 +257,7 @@ export const modelFamilies: ModelFamily[] = [
   },
   {
     id: "firefly",
+    logoFile: "firefly",
     name: "Firefly",
     developer: "Adobe",
     developerEn: "Adobe",

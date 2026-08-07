@@ -80,7 +80,7 @@ export default function ModelDetailPage() {
 
         <div className="bg-white border border-stone-200 rounded-lg p-6 md:p-8 mb-8">
           <div className="flex items-start gap-4">
-            <Favicon domain={family.logoDomain} fallbackText={family.name} size={56} />
+            <Favicon domain={family.logoDomain} logoFile={family.logoFile} fallbackText={family.name} size={56} />
             <div className="min-w-0 flex-1">
               <h1 className="text-3xl md:text-4xl font-serif font-medium text-stone-900 tracking-tight">
                 {family.name}
