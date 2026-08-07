@@ -218,13 +218,13 @@ export const modelFamilies: ModelFamily[] = [
     developer: "Recraft AI",
     developerEn: "Recraft AI",
     logoDomain: "recraft.ai",
-    intro: "面向设计师的图像模型，矢量插画与品牌视觉（Logo、图标）生成能力强，V4 主打生产级设计资产。",
-    introEn: "Designer-focused image model strong at vector illustrations and brand visuals; V4 targets production-ready design assets.",
+    intro: "面向设计师的图像模型，注重视觉与设计品味，支持从插画到照片级写实及高质量可编辑 SVG 矢量，V4 支持 2048² 原生分辨率。",
+    introEn: "Designer-focused image model emphasizing visual taste and design quality, from illustration to photorealism and editable SVG vectors; V4 adds 2048² native resolution.",
     apiDocs: "https://www.recraft.ai/docs",
     platforms: ["recraft"],
     versions: [
-      { id: "recraft-v3", name: "Recraft V3", releaseDate: "2024-09", description: "矢量与品牌设计能力奠定口碑。", descriptionEn: "Established the brand for vectors and brand design.", active: false, scenes: ["插画创作", "海报与平面设计"] },
-      { id: "recraft-v4", name: "Recraft V4", releaseDate: "2026", description: "当前最新，生产级图像、矢量与设计资产。", descriptionEn: "Latest release; production-ready images, vectors and design assets.", active: true, scenes: ["插画创作", "海报与平面设计"], apiPricing: "官方 API：V4 $0.04/张、V4 Pro $0.25/张（单元包 $1=1000 units）", apiPricingEn: "Official API: V4 $0.04, V4 Pro $0.25 per image (pack: $1=1000 units)" },
+      { id: "recraft-v3", name: "Recraft V3", releaseDate: "2024-10", description: "曾连续五个月在 Artificial Analysis 公开基准排名第一，真实感与文字渲染重大进步。", descriptionEn: "Topped the Artificial Analysis public benchmark for five straight months; major gains in photorealism and text rendering.", active: false, scenes: ["插画创作", "海报与平面设计"], apiPricing: "官方 API：V3 $0.04/张、V3 Vector $0.08/张", apiPricingEn: "Official API: V3 $0.04, V3 Vector $0.08 per image" },
+      { id: "recraft-v4", name: "Recraft V4", releaseDate: "2026-02", description: "当前最新，注重视觉与设计品味（平衡构图、连贯色彩、精致细节），支持可编辑 SVG 矢量与 2048² 原生分辨率。", descriptionEn: "Latest release focused on visual taste — balanced composition, coherent color, refined detail — with editable SVG vectors and 2048² native resolution (Pro).", active: true, scenes: ["插画创作", "海报与平面设计"], apiPricing: "官方 API：V4 $0.04、V4 Pro $0.25、V4 Vector $0.08、V4 Pro Vector $0.30 每张", apiPricingEn: "Official API: V4 $0.04, V4 Pro $0.25, V4 Vector $0.08, V4 Pro Vector $0.30 per image" },
     ],
   },
   {
@@ -238,7 +238,8 @@ export const modelFamilies: ModelFamily[] = [
     apiDocs: "https://docs.leonardo.ai",
     platforms: ["leonardo"],
     versions: [
-      { id: "phoenix-1", name: "Phoenix", releaseDate: "2025-03", description: "旗舰模型，游戏美术与概念设计专用。", descriptionEn: "Flagship model for game art and concept design.", active: true, scenes: ["文生图", "插画创作", "图生图与编辑"], apiPricing: "Leonardo API 按 PAYG 动态计费（官方价格计算器，无静态价目）", apiPricingEn: "Leonardo API is PAYG with a pricing calculator; no static rates published" },
+      { id: "phoenix-0-9", name: "Phoenix 0.9", releaseDate: "2025", description: "Phoenix 早期版本。", descriptionEn: "Early Phoenix release.", active: false, scenes: ["文生图", "插画创作"] },
+      { id: "phoenix-1", name: "Phoenix 1.0", releaseDate: "2025", description: "旗舰模型（phoenix-v1.0），游戏美术与概念设计专用，官方未公开精确首发日期。", descriptionEn: "Flagship model (phoenix-v1.0) for game art and concept design; exact release date not officially published.", active: true, scenes: ["文生图", "插画创作", "图生图与编辑"], apiPricing: "Leonardo API 按 PAYG 动态计费（官方价格计算器，无静态价目）", apiPricingEn: "Leonardo API is PAYG with a pricing calculator; no static rates published" },
     ],
   },
   {
