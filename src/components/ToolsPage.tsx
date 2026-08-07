@@ -7,7 +7,7 @@ import { SubmitModal } from './SubmitModal';
 import { DisclaimerModal, DISCLAIMER_KEY } from './DisclaimerModal';
 import { Favicon } from './Favicon';
 import { tools, toolScenes, toolModels, sceneIcons, getToolDomain, AIGCTool } from '../tools';
-import { modelFamilies, findFamilyForVersion } from '../models';
+import { modelFamilies } from '../models';
 import { t } from '../locales';
 
 const LANG_KEY = 'photoo_gallery_lang';
@@ -252,25 +252,6 @@ export default function ToolsPage() {
                       );
                     })}
                   </div>
-                  {tool.modelVersions && tool.modelVersions.length > 0 && (
-                    <div className="flex flex-wrap gap-1">
-                      {tool.modelVersions.map((v) => {
-                        const vFamily = findFamilyForVersion(v);
-                        // 模型库无对应家族的版本标签不渲染（避免死标签）
-                        if (!vFamily) return null;
-                        return (
-                          <Link
-                            key={v}
-                            to={`/models/${vFamily.id}`}
-                            onClick={(e) => e.stopPropagation()}
-                            className="inline-flex items-center px-2 py-0.5 text-[10px] font-medium text-stone-500 bg-stone-100/80 rounded-full hover:text-stone-900 hover:bg-stone-200/80 transition-colors"
-                          >
-                            {v}
-                          </Link>
-                        );
-                      })}
-                    </div>
-                  )}
                 </div>
               </div>
             ))}

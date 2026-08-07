@@ -312,8 +312,8 @@ export const tools: AIGCTool[] = [
     description: "微软 AI 图像生成，2025 年起转向自研 MAI-Image 系列（MAI-Image-2.5 为当前主力）。",
     descriptionEn: "Microsoft AI image generation, now powered by the in-house MAI-Image series (MAI-Image-2.5 current).",
     scenes: ["文生图", "海报与平面设计"],
-    models: ["MAI-Image"],
-    modelVersions: ["MAI-Image-2.5"],
+    models: [],
+    modelVersions: [],
   },
   {
     id: "grok",
@@ -322,8 +322,8 @@ export const tools: AIGCTool[] = [
     description: "xAI 对话助手的图像生成，自研 Grok Imagine 系列。",
     descriptionEn: "xAI assistant's image generation, powered by the in-house Grok Imagine series.",
     scenes: ["文生图", "图生图与编辑"],
-    models: ["Grok Imagine"],
-    modelVersions: ["Imagine 1.0"],
+    models: [],
+    modelVersions: [],
   },
   {
     id: "google-flow",
@@ -332,8 +332,8 @@ export const tools: AIGCTool[] = [
     description: "Google 统一创作平台（整合 Whisk/ImageFX），图像侧为 Imagen 4 与 Nano Banana。",
     descriptionEn: "Google's unified creation platform (absorbing Whisk/ImageFX); image side runs Imagen 4 and Nano Banana.",
     scenes: ["文生图", "图生图与编辑"],
-    models: ["Nano Banana", "Imagen"],
-    modelVersions: ["Imagen 4", "Nano Banana 2"],
+    models: ["Nano Banana"],
+    modelVersions: ["Nano Banana 2"],
   },
   {
     id: "comfyui",
@@ -382,8 +382,8 @@ export const tools: AIGCTool[] = [
     description: "二次元动漫绘图社区（1500 万+ 用户），自有 Mio / Tsubaki 系列模型与社区 SD 系 LoRA。",
     descriptionEn: "Anime illustration community (15M+ users) with in-house Mio/Tsubaki models and community SD LoRAs.",
     scenes: ["插画创作", "模型社区"],
-    models: ["PixAI 自研"],
-    modelVersions: ["Mio.2", "Tsubaki.2"],
+    models: [],
+    modelVersions: [],
   },
   {
     id: "nightcafe",
@@ -413,7 +413,7 @@ export const tools: AIGCTool[] = [
     descriptionEn: "One-stop AI image generation inside a design editor, with 59 models (FLUX.2 Pro, Ideogram, Recraft V4, Seedream, Imagen 4, GPT Image...).",
     scenes: ["海报与平面设计", "电商与产品"],
     models: ["FLUX", "Ideogram", "Recraft", "Seedream", "GPT-Image", "Nano Banana"],
-    modelVersions: ["FLUX.2 Pro", "Ideogram 3.0", "Recraft V4", "Seedream 5.0", "Imagen 4", "GPT Image"],
+    modelVersions: ["FLUX.2 Pro", "Ideogram 3.0", "Recraft V4", "Seedream 5.0", "GPT Image"],
   },
   {
     id: "magnific",
@@ -422,8 +422,8 @@ export const tools: AIGCTool[] = [
     description: "素材平台内置 AI 图像生成（2026 年品牌更名 Magnific），自研 Mystic / F Lite 与官方 FLUX.1 合作。",
     descriptionEn: "Stock platform with built-in AI generation (rebranded Magnific in 2026): in-house Mystic/F Lite plus official FLUX.1.",
     scenes: ["海报与平面设计", "电商与产品"],
-    models: ["FLUX", "Magnific 自研"],
-    modelVersions: ["Mystic", "F Lite", "FLUX.1"],
+    models: ["FLUX"],
+    modelVersions: ["FLUX.1"],
   },
   {
     id: "perplexity",
