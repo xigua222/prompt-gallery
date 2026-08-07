@@ -6,6 +6,8 @@
 
 import {
   Atom,
+  Laptop,
+  Layers,
   Banana,
   Brush,
   CircleDashed,
@@ -35,6 +37,8 @@ export const sceneIcons: Record<string, LucideIcon> = {
   "海报与平面设计": LayoutTemplate,
   "电商与产品": ShoppingBag,
   "模型社区": Users,
+  "聚合平台": Layers,
+  "本地工具": Laptop,
 };
 
 /** 模型 → 图标映射（lucide 图标，风格统一） */
@@ -91,6 +95,8 @@ export const toolScenes = [
   "海报与平面设计",
   "电商与产品",
   "模型社区",
+  "聚合平台",
+  "本地工具",
 ] as const;
 
 /** 模型分类（双维度之一） */
@@ -116,7 +122,7 @@ export const tools: AIGCTool[] = [
     url: "https://www.midjourney.com",
     description: "顶级质感文生图平台，以艺术审美和细节表现著称，适合插画、概念设计与艺术创作。",
     descriptionEn: "Premium text-to-image platform known for artistic quality and detail, ideal for illustration and concept art.",
-    scenes: ["文生图", "插画创作"],
+    scenes: ["聚合平台", "文生图", "插画创作"],
     models: ["Midjourney"],
     modelVersions: ["V8.2"],
     logoFile: "midjourney.svg",
@@ -127,7 +133,7 @@ export const tools: AIGCTool[] = [
     url: "https://stability.ai",
     description: "开源图像生成模型生态，支持本地部署与精细控制（LoRA、ControlNet），社区资源极其丰富。",
     descriptionEn: "Open-source image generation ecosystem with local deployment, fine control (LoRA, ControlNet) and a huge community.",
-    scenes: ["文生图", "图生图与编辑", "模型社区"],
+    scenes: ["本地工具", "图生图与编辑"],
     models: ["Stable Diffusion"],
     modelVersions: ["1.5", "XL", "3.5"],
     logoFile: "stability.png",
@@ -267,7 +273,7 @@ export const tools: AIGCTool[] = [
     url: "https://www.canva.com",
     description: "大众化设计平台，Magic Media 内置 AI 生图，海报与社媒素材模板化产出。",
     descriptionEn: "Mainstream design platform with Magic Media AI generation, templated posters and social assets.",
-    scenes: ["海报与平面设计", "电商与产品"],
+    scenes: ["聚合平台", "海报与平面设计", "电商与产品"],
     models: [],
   },
   {
@@ -306,7 +312,7 @@ export const tools: AIGCTool[] = [
     description: "微软 AI 图像生成，2025 年起转向自研 MAI-Image 系列（MAI-Image-2.5 为当前主力）。",
     descriptionEn: "Microsoft AI image generation, now powered by the in-house MAI-Image series (MAI-Image-2.5 current).",
     scenes: ["文生图", "海报与平面设计"],
-    models: [],
+    models: ["MAI-Image"],
     modelVersions: ["MAI-Image-2.5"],
   },
   {
@@ -316,8 +322,8 @@ export const tools: AIGCTool[] = [
     description: "xAI 对话助手的图像生成，自研 Grok Imagine 系列。",
     descriptionEn: "xAI assistant's image generation, powered by the in-house Grok Imagine series.",
     scenes: ["文生图", "图生图与编辑"],
-    models: [],
-    modelVersions: ["Grok Imagine"],
+    models: ["Grok Imagine"],
+    modelVersions: ["Imagine 1.0"],
   },
   {
     id: "google-flow",
@@ -326,7 +332,7 @@ export const tools: AIGCTool[] = [
     description: "Google 统一创作平台（整合 Whisk/ImageFX），图像侧为 Imagen 4 与 Nano Banana。",
     descriptionEn: "Google's unified creation platform (absorbing Whisk/ImageFX); image side runs Imagen 4 and Nano Banana.",
     scenes: ["文生图", "图生图与编辑"],
-    models: ["Nano Banana"],
+    models: ["Nano Banana", "Imagen"],
     modelVersions: ["Imagen 4", "Nano Banana 2"],
   },
   {
@@ -345,7 +351,7 @@ export const tools: AIGCTool[] = [
     url: "https://github.com/lllyasviel/Fooocus",
     description: "本地一键式简易文生图工具（仿 Midjourney 体验），基于 SDXL 架构。",
     descriptionEn: "Local one-click text-to-image tool (Midjourney-like UX), built on the SDXL architecture.",
-    scenes: ["文生图"],
+    scenes: ["本地工具", "文生图"],
     models: ["Stable Diffusion"],
     modelVersions: ["SDXL"],
   },
@@ -365,7 +371,7 @@ export const tools: AIGCTool[] = [
     url: "https://www.seaart.ai",
     description: "一站式 AI 图像/视频创作平台，聚合 GPT Image 2、Seedream 5.0 Pro、Nano Banana、FLUX、Qwen-Image。",
     descriptionEn: "All-in-one AI image/video platform aggregating GPT Image 2, Seedream 5.0 Pro, Nano Banana, FLUX and Qwen-Image.",
-    scenes: ["文生图", "人像写真", "电商与产品"],
+    scenes: ["聚合平台", "文生图", "人像写真", "电商与产品"],
     models: ["GPT-Image", "Seedream", "Nano Banana", "FLUX", "Qwen-Image"],
     modelVersions: ["GPT Image 2", "Seedream 5.0 Pro", "Nano Banana 2", "FLUX", "Qwen-Image 3.0"],
   },
@@ -376,7 +382,7 @@ export const tools: AIGCTool[] = [
     description: "二次元动漫绘图社区（1500 万+ 用户），自有 Mio / Tsubaki 系列模型与社区 SD 系 LoRA。",
     descriptionEn: "Anime illustration community (15M+ users) with in-house Mio/Tsubaki models and community SD LoRAs.",
     scenes: ["插画创作", "模型社区"],
-    models: [],
+    models: ["PixAI 自研"],
     modelVersions: ["Mio.2", "Tsubaki.2"],
   },
   {
@@ -395,7 +401,7 @@ export const tools: AIGCTool[] = [
     url: "https://getimg.ai",
     description: "在线图像生成/编辑工具包，支持 FLUX 3、Seedream 5.0 Pro、Qwen-Image、Nano Banana 2，API 友好。",
     descriptionEn: "Online image generation/editing toolkit with FLUX 3, Seedream 5.0 Pro, Qwen-Image and Nano Banana 2; API-friendly.",
-    scenes: ["文生图", "图生图与编辑", "电商与产品"],
+    scenes: ["聚合平台", "文生图", "图生图与编辑", "电商与产品"],
     models: ["FLUX", "Seedream", "Qwen-Image", "Nano Banana"],
     modelVersions: ["FLUX 3", "FLUX.2", "Seedream 5.0 Pro", "Qwen-Image", "Nano Banana 2"],
   },
@@ -416,7 +422,7 @@ export const tools: AIGCTool[] = [
     description: "素材平台内置 AI 图像生成（2026 年品牌更名 Magnific），自研 Mystic / F Lite 与官方 FLUX.1 合作。",
     descriptionEn: "Stock platform with built-in AI generation (rebranded Magnific in 2026): in-house Mystic/F Lite plus official FLUX.1.",
     scenes: ["海报与平面设计", "电商与产品"],
-    models: ["FLUX"],
+    models: ["FLUX", "Magnific 自研"],
     modelVersions: ["Mystic", "F Lite", "FLUX.1"],
   },
   {

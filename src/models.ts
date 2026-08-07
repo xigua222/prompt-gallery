@@ -44,8 +44,8 @@ export interface ModelFamily {
   developerEn: string;
   /** 厂商官网域名（回退源） */
   logoDomain: string;
-  /** 本地 logo 文件名（public/logos/，含扩展名） */
-  logoFile: string;
+  /** 本地 logo 文件名（public/logos/，含扩展名，可省略走远程回退） */
+  logoFile?: string;
   /** 家族介绍（中文） */
   intro: string;
   /** 家族介绍（英文） */
@@ -283,6 +283,79 @@ export const modelFamilies: ModelFamily[] = [
       { id: "firefly-5", name: "Image 5", releaseDate: "2025-10", description: "当前最新，MAX 大会发布，细节与一致性最佳。", descriptionEn: "Latest release from MAX; best detail and consistency.", active: true, scenes: ["图生图与编辑", "海报与平面设计"] },
     ],
   },
+  {
+    id: "imagen",
+    name: "Imagen",
+    developer: "Google DeepMind",
+    developerEn: "Google DeepMind",
+    logoDomain: "labs.google",
+    logoFile: "gemini.png",
+    intro: "Google 图像生成模型系列，主打真实感与文本渲染，3/4 代服务 Google Flow 与 ImageFX。",
+    introEn: "Google's image model series focused on realism and typography; Imagen 3/4 power Google Flow and ImageFX.",
+    platforms: ["google-flow"],
+    versions: [
+      { id: "imagen-2", name: "Imagen 2", releaseDate: "2023-07", description: "第二代，真实感提升。", descriptionEn: "Second generation with improved realism.", active: false, scenes: ["文生图"] },
+      { id: "imagen-3", name: "Imagen 3", releaseDate: "2024-08", description: "细节与文本渲染大幅增强。", descriptionEn: "Major gains in detail and typography.", active: false, scenes: ["文生图"] },
+      { id: "imagen-4", name: "Imagen 4", releaseDate: "2025-05", description: "当前最新，4/4 Ultra 档位，服务于 Google Flow。", descriptionEn: "Latest release (4/4 Ultra tiers), serving Google Flow.", active: true, scenes: ["文生图", "图生图与编辑"] },
+    ],
+  },
+  {
+    id: "mai-image",
+    name: "MAI-Image",
+    developer: "Microsoft",
+    developerEn: "Microsoft",
+    logoDomain: "microsoft.com",
+    intro: "微软自研图像生成系列，2025 年起逐步替代 OpenAI 模型，接入 Bing 与 Copilot。",
+    introEn: "Microsoft's in-house image generation series, replacing OpenAI models since late 2025 in Bing and Copilot.",
+    platforms: ["copilot"],
+    versions: [
+      { id: "mai-1", name: "MAI-Image-1", releaseDate: "2025-11", description: "首代接入 Bing/Copilot。", descriptionEn: "First generation in Bing/Copilot.", active: false, scenes: ["文生图"] },
+      { id: "mai-2", name: "MAI-Image-2", releaseDate: "2026-03", description: "全面替换前代。", descriptionEn: "Full replacement of the previous generation.", active: false, scenes: ["文生图"] },
+      { id: "mai-2-5", name: "MAI-Image-2.5", releaseDate: "2026-05", description: "当前最新，Arena 文生图榜第 3。", descriptionEn: "Latest release, ranked #3 on the Arena leaderboard.", active: true, scenes: ["文生图", "海报与平面设计"] },
+    ],
+  },
+  {
+    id: "grok-imagine",
+    name: "Grok Imagine",
+    developer: "xAI",
+    developerEn: "xAI",
+    logoDomain: "x.ai",
+    intro: "xAI 对话助手的自研图像生成系列，支持多风格模板。",
+    introEn: "xAI assistant's in-house image generation series with multi-style templates.",
+    platforms: ["grok"],
+    versions: [
+      { id: "imagine-1", name: "Imagine 1.0", releaseDate: "2026-02", description: "当前最新，内置 Chibi 等风格模板。", descriptionEn: "Latest release with Chibi and other style templates.", active: true, scenes: ["文生图", "图生图与编辑"] },
+    ],
+  },
+  {
+    id: "pixai-models",
+    name: "PixAI 自研",
+    developer: "PixAI",
+    developerEn: "PixAI",
+    logoDomain: "pixai.art",
+    intro: "PixAI 动漫平台的聊天式/角色式自研模型系列。",
+    introEn: "PixAI's in-house chat-style and character-style models for anime illustration.",
+    platforms: ["pixai"],
+    versions: [
+      { id: "mio-2", name: "Mio.2", releaseDate: "2026-07", description: "聊天式动漫助手模型。", descriptionEn: "Chat-style anime assistant model.", active: true, scenes: ["插画创作"] },
+      { id: "tsubaki-2", name: "Tsubaki.2", releaseDate: "2026-07", description: "多角色场景模型。", descriptionEn: "Multi-character scene model.", active: true, scenes: ["插画创作"] },
+    ],
+  },
+  {
+    id: "magnific-models",
+    name: "Magnific 自研",
+    developer: "Freepik / Magnific",
+    developerEn: "Freepik / Magnific",
+    logoDomain: "magnific.com",
+    intro: "Freepik（2026 年更名 Magnific）素材平台的自研与合作模型系列。",
+    introEn: "Freepik's (rebranded Magnific in 2026) in-house and partner model series.",
+    platforms: ["magnific"],
+    versions: [
+      { id: "mystic", name: "Mystic", releaseDate: "2024-08", description: "FLUX 微调旗舰模型。", descriptionEn: "Flagship FLUX finetune.", active: true, scenes: ["文生图", "海报与平面设计"] },
+      { id: "f-lite", name: "F Lite", releaseDate: "2025-04", description: "开源轻量模型（与 Fal.ai 合作）。", descriptionEn: "Open lightweight model (with Fal.ai).", active: true, scenes: ["文生图"] },
+    ],
+  },
+
 ];
 
 /** 版本展示标题：家族名 + 型号（自动去重，如 Midjourney V8.2 / FLUX 3 / Ideogram 4.0） */
@@ -290,6 +363,17 @@ export function getVersionTitle(family: ModelFamily, version: ModelVersion): str
   const fam = family.name.toLowerCase().replace(/[- ]/g, '');
   const ver = version.name.toLowerCase().replace(/[- ]/g, '');
   return ver.startsWith(fam) || ver.includes(fam) ? version.name : family.name + ' ' + version.name;
+}
+
+/** 根据版本标签查找所属家族（工具页版本标签可链接化） */
+export function findFamilyForVersion(versionLabel: string): ModelFamily | undefined {
+  const norm = versionLabel.toLowerCase().replace(/[- ]/g, '');
+  return modelFamilies.find(f =>
+    f.versions.some(v => {
+      const vn = v.name.toLowerCase().replace(/[- ]/g, '');
+      return norm === vn || norm.includes(vn) || vn.includes(norm);
+    })
+  );
 }
 
 /** 列表页展示的活跃版本（单一模型卡片） */
