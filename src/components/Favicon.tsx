@@ -11,11 +11,16 @@ interface FaviconProps {
   className?: string;
 }
 
-/** 品牌图标：优先加载网站 favicon，失败时回退到首字母占位 */
-export function Favicon({ domain, fallbackText, size = 36, className = "" }: FaviconProps) {
-  const [failed, setFailed] = useState(false);
+type SourceStage = 'horse' | 'google' | 'fallback';
 
-  if (failed) {
+/**
+ * 品牌图标：优先加载高清图标（icon.horse，源自网站 apple-touch-icon 等高清资源），
+ * 依次回退到 Google favicon 服务、首字母占位，保证任何情况都有清晰可用的图标。
+ */
+export function Favicon({ domain, fallbackText, size = 36, className = "" }: FaviconProps) {
+  const [stage, setStage] = useState<SourceStage>('horse');
+
+  if (stage === 'fallback') {
     return (
       <div
         className={`rounded-lg bg-stone-100 border border-stone-200 flex items-center justify-center text-stone-700 font-serif font-medium flex-shrink-0 ${className}`}
@@ -26,13 +31,17 @@ export function Favicon({ domain, fallbackText, size = 36, className = "" }: Fav
     );
   }
 
+  const src = stage === 'horse'
+    ? `https://icon.horse/icon/${domain}`
+    : `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
+
   return (
     <img
-      src={`https://www.google.com/s2/favicons?domain=${domain}&sz=${size * 2}`}
+      src={src}
       alt=""
       loading="lazy"
-      onError={() => setFailed(true)}
-      className={`rounded-lg bg-white border border-stone-200 flex-shrink-0 ${className}`}
+      onError={() => setStage(stage === 'horse' ? 'google' : 'fallback')}
+      className={`rounded-lg bg-white border border-stone-200 flex-shrink-0 object-contain ${className}`}
       style={{ width: size, height: size }}
     />
   );
