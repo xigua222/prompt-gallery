@@ -237,18 +237,16 @@ export default function ToolsPage() {
                   <div className="flex flex-wrap gap-1.5">
                     {tool.models.map((model) => {
                       const family = modelFamilies.find(f => f.name === model);
+                      // 模型库无对应家族的标签不渲染（避免死标签）
+                      if (!family) return null;
                       return (
                         <Link
                           key={model}
-                          to={family ? `/models/${family.id}` : '/models'}
+                          to={`/models/${family.id}`}
                           onClick={(e) => e.stopPropagation()}
                           className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-medium text-stone-700 bg-stone-50 border border-stone-200 rounded-full hover:border-stone-900 hover:text-stone-900 transition-colors"
                         >
-                          {family ? (
-                            <Favicon domain={family.logoDomain} logoFile={family.logoFile} fallbackText={family.name} size={16} />
-                          ) : (
-                            <Sparkles size={10} />
-                          )}
+                          <Favicon domain={family.logoDomain} logoFile={family.logoFile} fallbackText={family.name} size={16} />
                           {model}
                         </Link>
                       );
@@ -258,18 +256,17 @@ export default function ToolsPage() {
                     <div className="flex flex-wrap gap-1">
                       {tool.modelVersions.map((v) => {
                         const vFamily = findFamilyForVersion(v);
-                        const cls = "inline-flex items-center px-2 py-0.5 text-[10px] font-medium text-stone-500 bg-stone-100/80 rounded-full";
-                        return vFamily ? (
+                        // 模型库无对应家族的版本标签不渲染（避免死标签）
+                        if (!vFamily) return null;
+                        return (
                           <Link
                             key={v}
                             to={`/models/${vFamily.id}`}
                             onClick={(e) => e.stopPropagation()}
-                            className={`${cls} hover:text-stone-900 hover:bg-stone-200/80 transition-colors`}
+                            className="inline-flex items-center px-2 py-0.5 text-[10px] font-medium text-stone-500 bg-stone-100/80 rounded-full hover:text-stone-900 hover:bg-stone-200/80 transition-colors"
                           >
                             {v}
                           </Link>
-                        ) : (
-                          <span key={v} className={cls}>{v}</span>
                         );
                       })}
                     </div>
