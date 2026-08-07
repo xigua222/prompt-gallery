@@ -7,7 +7,7 @@ import { t } from '../locales';
 
 export const DISCLAIMER_KEY = 'photoo_gallery_disclaimer';
 
-/** 确认跳转后的倒计时秒数 */
+/** 弹窗打开后自动跳转的倒计时秒数 */
 const COUNTDOWN_SECONDS = 3;
 
 interface DisclaimerModalProps {
@@ -36,17 +36,23 @@ export function DisclaimerModal({ tool, lang, onClose }: DisclaimerModalProps) {
     onClose();
   };
 
-  const handleConfirm = () => {
-    if (!tool) return;
-    if (dontAsk) {
-      try {
+  const handleDontAskChange = (checked: boolean) => {
+    setDontAsk(checked);
+    try {
+      if (checked) {
         localStorage.setItem(DISCLAIMER_KEY, '1');
-      } catch {
-        /* ignore */
+      } else {
+        localStorage.removeItem(DISCLAIMER_KEY);
       }
+    } catch {
+      /* ignore */
     }
-    setCountdown(COUNTDOWN_SECONDS);
   };
+
+  // 弹窗打开（或切换目标）时立即开始倒计时
+  useEffect(() => {
+    setCountdown(COUNTDOWN_SECONDS);
+  }, [tool]);
 
   // 倒计时归零后自动跳转
   useEffect(() => {
@@ -59,11 +65,6 @@ export function DisclaimerModal({ tool, lang, onClose }: DisclaimerModalProps) {
     return () => clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [countdown]);
-
-  // 弹窗关闭或切换目标时重置倒计时，避免残留计时器继续触发跳转
-  useEffect(() => {
-    setCountdown(null);
-  }, [tool]);
 
   return (
     <AnimatePresence>
@@ -119,8 +120,7 @@ export function DisclaimerModal({ tool, lang, onClose }: DisclaimerModalProps) {
                 <input
                   type="checkbox"
                   checked={dontAsk}
-                  disabled={countdown !== null}
-                  onChange={(e) => setDontAsk(e.target.checked)}
+                  onChange={(e) => handleDontAskChange(e.target.checked)}
                   className="w-4 h-4 rounded border-stone-300 text-stone-900 focus:ring-stone-400"
                 />
                 {labels.disclaimerDontAsk}
@@ -139,15 +139,7 @@ export function DisclaimerModal({ tool, lang, onClose }: DisclaimerModalProps) {
               >
                 {labels.disclaimerCancel}
               </button>
-              {countdown === null ? (
-                <button
-                  onClick={handleConfirm}
-                  className="flex items-center gap-2 px-6 py-2 bg-stone-900 text-white rounded-lg hover:bg-stone-800 transition-colors"
-                >
-                  <ExternalLink size={15} />
-                  {labels.disclaimerContinue}
-                </button>
-              ) : (
+              {countdown !== null && (
                 <button
                   onClick={jumpNow}
                   className="flex items-center gap-2 px-6 py-2 bg-stone-900 text-white rounded-lg hover:bg-stone-800 transition-colors"
