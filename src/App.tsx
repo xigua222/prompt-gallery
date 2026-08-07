@@ -12,6 +12,7 @@ import { t } from './locales';
 
 const LIKES_KEY = 'photoo_gallery_liked';
 const LEGACY_LIKES_KEY = 'aura_liked_artworks';
+const LANG_KEY = 'photoo_gallery_lang';
 
 function shuffleArray<T>(array: T[]): T[] {
   const shuffled = [...array];
@@ -42,8 +43,16 @@ function loadLikedIds(): Set<string> {
   }
 }
 
+function loadLang(): Language {
+  try {
+    return localStorage.getItem(LANG_KEY) === 'en' ? 'en' : 'zh';
+  } catch {
+    return 'zh';
+  }
+}
+
 export default function App() {
-  const [lang, setLang] = useState<Language>('zh');
+  const [lang, setLang] = useState<Language>(loadLang);
   const [activeCategory, setActiveCategory] = useState("All");
   const [activeModel, setActiveModel] = useState("All");
   const [selectedArt, setSelectedArt] = useState<Artwork | null>(null);
@@ -59,6 +68,14 @@ export default function App() {
       ? 'Photoo Prompt Gallery - AI 生成提示词画廊'
       : 'Photoo Prompt Gallery - AI Prompt Gallery';
   }, [lang]);
+
+  const toggleLang = () => {
+    setLang(prev => {
+      const next = prev === 'en' ? 'zh' : 'en';
+      localStorage.setItem(LANG_KEY, next);
+      return next;
+    });
+  };
 
   const toggleLike = (id: string, e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
@@ -110,7 +127,7 @@ export default function App() {
       <Header
         lang={lang}
         labels={labels}
-        onToggleLang={() => setLang(l => l === 'en' ? 'zh' : 'en')}
+        onToggleLang={toggleLang}
         onOpenSubmit={() => setShowSubmit(true)}
       />
 

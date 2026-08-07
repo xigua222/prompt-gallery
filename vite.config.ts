@@ -23,10 +23,10 @@ export default defineConfig(() => {
           // 按依赖拆分 chunk，提升缓存命中率
           manualChunks(id) {
             if (!id.includes('node_modules')) return undefined;
-            if (id.includes('react') || id.includes('scheduler')) return 'react-vendor';
+            if (id.includes('react') || id.includes('scheduler') || id.includes('react-router')) return 'react-vendor';
             if (id.includes('motion')) return 'motion';
             if (id.includes('lucide')) return 'icons';
-            return 'vendor';
+            return undefined;
           },
         },
       },

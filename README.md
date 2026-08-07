@@ -38,6 +38,11 @@
 - GitHub Issue 投稿 → 自动压缩图片 → 自动创建 PR → 合并后自动部署
 - 完整流水线见 `.github/workflows/`
 
+### 🧭 AIGC 工具导航
+- 独立页面（`/tools`），收录主流 AI 图像生成工具与模型
+- 场景 × 模型双维度筛选，快速找到适合的工具
+- 工具数据维护在 `src/tools.ts`，可直接增删修改
+
 ---
 
 ## 📂 作品分类
@@ -124,7 +129,8 @@ npm run generate:data
 ├── scripts/
 │   └── generate-data.mjs   # 数据生成脚本（prompts.json → src/data.ts）
 └── src/
-    ├── components/         # Header / SearchBar / FilterBar / ArtworkGrid / Modal
+    ├── components/         # Header / SearchBar / FilterBar / ArtworkGrid / ToolsPage / Modal
+    ├── tools.ts            # AIGC 工具导航数据（可编辑增删）
     ├── data.ts             # 生成的作品数据
     ├── locales.ts          # 中英文文案
     └── utils.ts            # 图片路径工具
