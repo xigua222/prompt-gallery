@@ -126,6 +126,19 @@ export default function ModelsPage() {
 
                   <div>
                     <p className="text-[11px] font-semibold tracking-widest text-stone-400 uppercase mb-1.5">
+                      {labels.modelsFamily}
+                    </p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {model.family.map((member) => (
+                        <span key={member} className="inline-flex items-center px-2 py-1 text-[11px] font-medium text-stone-600 bg-stone-100 rounded-full">
+                          {member}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <p className="text-[11px] font-semibold tracking-widest text-stone-400 uppercase mb-1.5">
                       {labels.modelsPlatforms}
                     </p>
                     <div className="flex flex-wrap gap-1.5">

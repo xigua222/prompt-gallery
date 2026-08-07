@@ -10,7 +10,6 @@ import {
   Brush,
   CircleDashed,
   Cloud,
-  Cpu,
   Flame,
   Image as ImageIcon,
   LayoutTemplate,
@@ -52,7 +51,6 @@ export const modelIcons: Record<string, LucideIcon> = {
   "Recraft": Brush,
   "Phoenix": Flame,
   "Firefly": Sparkles,
-  "自研模型": Cpu,
 };
 
 /** 从工具 URL 提取域名（去除 www. 前缀） */
@@ -105,7 +103,6 @@ export const toolModels = [
   "Recraft",
   "Phoenix",
   "Firefly",
-  "自研模型",
 ] as const;
 
 export const tools: AIGCTool[] = [
@@ -242,7 +239,7 @@ export const tools: AIGCTool[] = [
     description: "大众化设计平台，Magic Media 内置 AI 生图，海报与社媒素材模板化产出。",
     descriptionEn: "Mainstream design platform with Magic Media AI generation, templated posters and social assets.",
     scenes: ["海报与平面设计", "电商与产品"],
-    models: ["自研模型"],
+    models: [],
   },
   {
     id: "adobe-firefly",
@@ -260,7 +257,7 @@ export const tools: AIGCTool[] = [
     description: "美图旗下 AI 图像创作平台，文生图与电商商品图生成，适合国内场景。",
     descriptionEn: "Meitu's AI image creation platform for text-to-image and e-commerce product shots in Chinese scenarios.",
     scenes: ["文生图", "电商与产品", "人像写真"],
-    models: ["自研模型"],
+    models: [],
   },
   {
     id: "kimi-image",
@@ -269,6 +266,6 @@ export const tools: AIGCTool[] = [
     description: "月之暗面 Kimi 内置图像生成，中文理解与排版自然，支持对话式改图。",
     descriptionEn: "Moonshot Kimi's built-in image generation with natural Chinese understanding and conversational editing.",
     scenes: ["文生图", "海报与平面设计"],
-    models: ["自研模型"],
+    models: [],
   },
 ];
