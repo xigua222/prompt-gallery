@@ -5,7 +5,7 @@ import { defineConfig } from 'vite';
 
 export default defineConfig(() => {
   return {
-    base: '/prompt-gallery/',
+    base: '/', // ai.photooapp.com 自定义域名部署在根路径（github.io/prompt-gallery/ 已 301 至该域名）
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
