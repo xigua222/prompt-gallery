@@ -3,6 +3,7 @@
  * 收录图像生成模型档案（开发者 / 发布时间 / 最新版本 / 模型家族 / 可用平台）。
  * 信息基于公开资料检索整理（截至 2026-08），可按需增删修改。
  * 平台字段引用 src/tools.ts 中的工具 id，用于与工具导航互链。
+ * logoDomain 用于展示厂商品牌 logo（favicon 服务）。
  */
 
 export interface ModelProfile {
@@ -26,6 +27,8 @@ export interface ModelProfile {
   scenes: string[];
   /** 可用平台（src/tools.ts 中的工具 id） */
   platforms: string[];
+  /** 厂商官网域名（用于展示品牌 logo） */
+  logoDomain: string;
   /** 模型家族：历代版本列表 */
   family: string[];
 }
@@ -43,6 +46,7 @@ export const models: ModelProfile[] = [
     descriptionEn: "Text-to-image model renowned for artistic quality and detail, available via Discord or web, subscription-based; V8 series keeps iterating.",
     scenes: ["文生图", "插画创作"],
     platforms: ["midjourney"],
+    logoDomain: "midjourney.com",
     family: ["V1 (2022-02)", "V2 (2022-04)", "V3 (2022-07)", "V4 (2022-11)", "V5 (2023-03)", "V5.2 (2023-06)", "V6 (2023-12)", "V6.1 (2024-07)", "V7 (2025-04)", "V8 (2026-03)", "V8.1 (2026-04)", "V8.2 (2026-07)"],
   },
   {
@@ -57,6 +61,7 @@ export const models: ModelProfile[] = [
     descriptionEn: "Open-source text-to-image ecosystem with local deployment, LoRA/ControlNet control and a massive community library.",
     scenes: ["文生图", "图生图与编辑", "模型社区"],
     platforms: ["stable-diffusion", "liblib", "civitai"],
+    logoDomain: "stability.ai",
     family: ["SD 1.5 (2022-10)", "SD 2.1 (2022-12)", "SDXL (2023-07)", "SDXL Turbo (2023-11)", "SD 3.0 (2024-02)", "SD 3.5 (2024-10)"],
   },
   {
@@ -71,6 +76,7 @@ export const models: ModelProfile[] = [
     descriptionEn: "High-realism text-to-image model with excellent typography; FLUX 3 unifies image+video multimodal generation, with open weights for local use.",
     scenes: ["文生图", "图生图与编辑"],
     platforms: ["flux", "leonardo", "liblib", "civitai", "krea"],
+    logoDomain: "blackforestlabs.ai",
     family: ["FLUX.1 (2024-08)", "FLUX.1.1 Pro (2024-10)", "FLUX.1 Kontext (2025-05)", "FLUX.2 (2025-11)", "FLUX.2 Max (2025-12)", "FLUX.2 Klein (2026-01)", "FLUX 3 (2026-07)"],
   },
   {
@@ -85,6 +91,7 @@ export const models: ModelProfile[] = [
     descriptionEn: "Conversational image model with strong instruction following and iterative editing; GPT Image 2 is fully integrated into ChatGPT and the API.",
     scenes: ["文生图", "图生图与编辑", "海报与平面设计"],
     platforms: ["chatgpt-image"],
+    logoDomain: "openai.com",
     family: ["DALL-E 2 (2022-04)", "DALL-E 3 (2023-08)", "GPT Image (2025-03)", "GPT Image 2 (2026-04)"],
   },
   {
@@ -99,6 +106,7 @@ export const models: ModelProfile[] = [
     descriptionEn: "Codename for Gemini image models; outstanding photorealism and iterative editing, with the 2 series spanning Flash to Lite tiers.",
     scenes: ["文生图", "图生图与编辑", "人像写真"],
     platforms: ["gemini"],
+    logoDomain: "gemini.google.com",
     family: ["Nano Banana (2025-08)", "Nano Banana Pro (2025-11)", "Nano Banana 2 (2026-02)", "Nano Banana 2 Lite (2026-06)"],
   },
   {
@@ -113,6 +121,7 @@ export const models: ModelProfile[] = [
     descriptionEn: "ByteDance's in-house image model, strong Chinese-context understanding and portraits; the 5.0 series adds a Lite tier, powering Doubao & Jimeng.",
     scenes: ["文生图", "人像写真", "插画创作"],
     platforms: ["jimeng"],
+    logoDomain: "jimeng.jianying.com",
     family: ["Seedream 4.0 (2025-09)", "Seedream 5.0 Lite (2026)", "Seedream 5.0 (2026)", "Seedream 5.0 Pro (2026)"],
   },
   {
@@ -127,6 +136,7 @@ export const models: ModelProfile[] = [
     descriptionEn: "Tongyi image model family with strong Chinese typography and e-commerce design; 3.0 is open-source and live on Qwen, serving Wanxiang.",
     scenes: ["文生图", "海报与平面设计", "电商与产品"],
     platforms: ["tongyi-wanxiang"],
+    logoDomain: "qwen.ai",
     family: ["Qwen-Image (2025-08)", "Qwen-Image-Edit (2025-08)", "Qwen-Image-Layered (2025-12)", "Qwen-Image 3.0 (2026-07)"],
   },
   {
@@ -141,6 +151,7 @@ export const models: ModelProfile[] = [
     descriptionEn: "Tencent's in-house image model with an 80B MoE architecture and unified autoregressive generation; open weights, integrated into Yuanbao & WeChat.",
     scenes: ["文生图", "人像写真"],
     platforms: ["hunyuan"],
+    logoDomain: "hunyuan.tencent.com",
     family: ["HunyuanImage 3.0 (2025-09)", "3.0 Instruct (2026-01)"],
   },
   {
@@ -155,6 +166,7 @@ export const models: ModelProfile[] = [
     descriptionEn: "Image model with industry-leading typography; 4.0 is the first open-weights release (9.3B params, native 2K), great for logos and posters.",
     scenes: ["文生图", "海报与平面设计"],
     platforms: ["ideogram"],
+    logoDomain: "ideogram.ai",
     family: ["1.0 (2023-08)", "2.0 (2024-08)", "2a (2025-02)", "3.0 (2025-03)", "4.0 (2026-06)"],
   },
   {
@@ -169,6 +181,7 @@ export const models: ModelProfile[] = [
     descriptionEn: "Designer-focused image model strong at vector illustrations and brand visuals (logos, icons); V4 targets production-ready design assets.",
     scenes: ["插画创作", "海报与平面设计"],
     platforms: ["recraft"],
+    logoDomain: "recraft.ai",
     family: ["Recraft V3", "Recraft V4 (2026)"],
   },
   {
@@ -182,6 +195,7 @@ export const models: ModelProfile[] = [
     descriptionEn: "Leonardo.Ai's flagship model for game art and concept design with strong style consistency, paired with Flow State workflows.",
     scenes: ["文生图", "插画创作", "图生图与编辑"],
     platforms: ["leonardo"],
+    logoDomain: "leonardo.ai",
     family: ["Phoenix"],
   },
   {
@@ -196,6 +210,7 @@ export const models: ModelProfile[] = [
     descriptionEn: "Adobe's generative AI with commercial-friendly licensing; Image 5 launched at MAX, deeply integrated into Photoshop & Illustrator workflows.",
     scenes: ["图生图与编辑", "海报与平面设计"],
     platforms: ["adobe-firefly"],
+    logoDomain: "firefly.adobe.com",
     family: ["Image 1 (2023)", "Image 2 (2023)", "Image 3 (2024)", "Image 4 (2025-04)", "Image 5 (2025-10)"],
   },
 ];

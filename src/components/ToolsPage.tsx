@@ -5,6 +5,7 @@ import { Language } from '../types';
 import { Header } from './Header';
 import { SubmitModal } from './SubmitModal';
 import { DisclaimerModal, DISCLAIMER_KEY } from './DisclaimerModal';
+import { Favicon } from './Favicon';
 import { tools, toolScenes, toolModels, modelIcons, sceneIcons, getToolDomain, AIGCTool } from '../tools';
 import { models } from '../models';
 import { t } from '../locales';
@@ -19,25 +20,9 @@ function loadLang(): Language {
   }
 }
 
-/** 工具网站图标：优先加载真实 favicon，失败时回退到首字母占位 */
+/** 工具网站图标：加载真实 favicon，失败时回退到首字母占位 */
 function ToolFavicon({ tool }: { tool: AIGCTool }) {
-  const [failed, setFailed] = useState(false);
-  if (failed) {
-    return (
-      <div className="w-9 h-9 rounded-lg bg-stone-100 border border-stone-200 flex items-center justify-center text-stone-700 font-serif text-lg font-medium flex-shrink-0">
-        {tool.name.charAt(0)}
-      </div>
-    );
-  }
-  return (
-    <img
-      src={`https://www.google.com/s2/favicons?domain=${getToolDomain(tool.url)}&sz=64`}
-      alt=""
-      loading="lazy"
-      onError={() => setFailed(true)}
-      className="w-9 h-9 rounded-lg bg-white border border-stone-200 flex-shrink-0"
-    />
-  );
+  return <Favicon domain={getToolDomain(tool.url)} fallbackText={tool.name} size={36} />;
 }
 
 export default function ToolsPage() {

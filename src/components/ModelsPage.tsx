@@ -4,8 +4,9 @@ import { ArrowUpRight, CalendarDays, Layers, Sparkles } from 'lucide-react';
 import { Language } from '../types';
 import { Header } from './Header';
 import { SubmitModal } from './SubmitModal';
+import { Favicon } from './Favicon';
 import { models } from '../models';
-import { tools, modelIcons, sceneIcons } from '../tools';
+import { tools, sceneIcons } from '../tools';
 import { t } from '../locales';
 
 const LANG_KEY = 'photoo_gallery_lang';
@@ -70,7 +71,6 @@ export default function ModelsPage() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {models.map((model) => {
-            const ModelIcon = modelIcons[model.name] ?? Sparkles;
             const highlighted = model.id === highlightId;
             return (
               <div
@@ -81,9 +81,7 @@ export default function ModelsPage() {
                 }`}
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-11 h-11 rounded-lg bg-stone-900 text-white flex items-center justify-center flex-shrink-0">
-                    <ModelIcon size={20} />
-                  </div>
+                  <Favicon domain={model.logoDomain} fallbackText={model.name} size={44} />
                   <div className="min-w-0">
                     <h3 className="text-xl font-serif font-medium text-stone-900 leading-tight">
                       {model.name}
