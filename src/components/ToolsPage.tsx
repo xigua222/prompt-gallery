@@ -20,9 +20,9 @@ function loadLang(): Language {
   }
 }
 
-/** 工具网站图标：加载真实 favicon，失败时回退到首字母占位 */
+/** 工具网站图标：本地 logo 优先，失败回退远程源 */
 function ToolFavicon({ tool }: { tool: AIGCTool }) {
-  return <Favicon domain={getToolDomain(tool.url)} fallbackText={tool.name} size={36} />;
+  return <Favicon domain={getToolDomain(tool.url)} logoFile={tool.logoFile} fallbackText={tool.name} size={36} />;
 }
 
 export default function ToolsPage() {
@@ -254,6 +254,15 @@ export default function ToolsPage() {
                       );
                     })}
                   </div>
+                  {tool.modelVersions && tool.modelVersions.length > 0 && (
+                    <div className="flex flex-wrap gap-1">
+                      {tool.modelVersions.map((v) => (
+                        <span key={v} className="inline-flex items-center px-2 py-0.5 text-[10px] font-medium text-stone-500 bg-stone-100/80 rounded-full">
+                          {v}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             ))}

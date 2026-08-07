@@ -74,8 +74,12 @@ export interface AIGCTool {
   descriptionEn: string;
   /** 场景标签：文生图 / 图生图与编辑 / 人像写真 / 插画创作 / 海报与平面设计 / 电商与产品 / 模型社区 */
   scenes: string[];
-  /** 模型标签：Midjourney / Stable Diffusion / FLUX / GPT-Image / Nano Banana / Seedream / Qwen-Image / 混元 / Ideogram / Recraft / Firefly 等 */
+  /** 模型标签（模型家族名，用于筛选与主标签） */
   models: string[];
+  /** 具体模型版本标签（细化颗粒度，如 ["FLUX.1", "FLUX.2"]） */
+  modelVersions?: string[];
+  /** 本地 logo 文件名（public/logos/，含扩展名），优先于远程 favicon */
+  logoFile?: string;
 }
 
 /** 场景分类（双维度之一） */
@@ -114,6 +118,8 @@ export const tools: AIGCTool[] = [
     descriptionEn: "Premium text-to-image platform known for artistic quality and detail, ideal for illustration and concept art.",
     scenes: ["文生图", "插画创作"],
     models: ["Midjourney"],
+    modelVersions: ["V8.2"],
+    logoFile: "midjourney.svg",
   },
   {
     id: "stable-diffusion",
@@ -123,6 +129,8 @@ export const tools: AIGCTool[] = [
     descriptionEn: "Open-source image generation ecosystem with local deployment, fine control (LoRA, ControlNet) and a huge community.",
     scenes: ["文生图", "图生图与编辑", "模型社区"],
     models: ["Stable Diffusion"],
+    modelVersions: ["1.5", "XL", "3.5"],
+    logoFile: "stability.png",
   },
   {
     id: "flux",
@@ -132,6 +140,8 @@ export const tools: AIGCTool[] = [
     descriptionEn: "High-quality text-to-image models from Black Forest Labs with excellent typography and realism, open-weights for local use.",
     scenes: ["文生图", "图生图与编辑"],
     models: ["FLUX"],
+    modelVersions: ["FLUX.1", "FLUX.2", "FLUX 3"],
+    logoFile: "blackforestlabs.svg",
   },
   {
     id: "chatgpt-image",
@@ -141,6 +151,8 @@ export const tools: AIGCTool[] = [
     descriptionEn: "Conversational GPT-Image generation with strong instruction following, precise editing and free tier access.",
     scenes: ["文生图", "图生图与编辑", "海报与平面设计"],
     models: ["GPT-Image"],
+    modelVersions: ["GPT Image 2"],
+    logoFile: "openai.svg",
   },
   {
     id: "gemini",
@@ -150,6 +162,8 @@ export const tools: AIGCTool[] = [
     descriptionEn: "Google multimodal assistant; the Nano Banana (2.5 Flash Image) model excels at photorealistic output and iterative editing.",
     scenes: ["文生图", "图生图与编辑", "人像写真"],
     models: ["Nano Banana"],
+    modelVersions: ["Nano Banana 2", "Nano Banana Pro"],
+    logoFile: "gemini.png",
   },
   {
     id: "jimeng",
@@ -159,6 +173,8 @@ export const tools: AIGCTool[] = [
     descriptionEn: "ByteDance image & video generation platform powered by Seedream, strong at portraits and Chinese-context scenes.",
     scenes: ["文生图", "人像写真", "插画创作"],
     models: ["Seedream"],
+    modelVersions: ["Seedream 5.0"],
+    logoFile: "jimeng.png",
   },
   {
     id: "tongyi-wanxiang",
@@ -168,6 +184,8 @@ export const tools: AIGCTool[] = [
     descriptionEn: "Alibaba Tongyi image generation with Qwen-Image / Wanxiang models, good for posters and e-commerce assets.",
     scenes: ["文生图", "海报与平面设计", "电商与产品"],
     models: ["Qwen-Image"],
+    modelVersions: ["Qwen-Image 3.0"],
+    logoFile: "qwen.png",
   },
   {
     id: "hunyuan",
@@ -177,6 +195,8 @@ export const tools: AIGCTool[] = [
     descriptionEn: "Tencent Hunyuan image generation, available in the Yuanbao app and web, reliable Chinese-language generation.",
     scenes: ["文生图", "人像写真"],
     models: ["混元"],
+    modelVersions: ["HunyuanImage 3.0"],
+    logoFile: "hunyuan.png",
   },
   {
     id: "ideogram",
@@ -186,6 +206,8 @@ export const tools: AIGCTool[] = [
     descriptionEn: "Text-to-image platform with industry-leading typography, great for posters, logos and text-heavy designs.",
     scenes: ["文生图", "海报与平面设计"],
     models: ["Ideogram"],
+    modelVersions: ["4.0"],
+    logoFile: "ideogram.png",
   },
   {
     id: "recraft",
@@ -195,6 +217,8 @@ export const tools: AIGCTool[] = [
     descriptionEn: "Designer-focused generation tool for vector illustrations and brand visuals (logos, icons) in one click.",
     scenes: ["插画创作", "海报与平面设计"],
     models: ["Recraft"],
+    modelVersions: ["V4"],
+    logoFile: "recraft.png",
   },
   {
     id: "leonardo",
@@ -204,6 +228,8 @@ export const tools: AIGCTool[] = [
     descriptionEn: "Game art and concept design platform with the Phoenix model family and rich asset/workflow tooling.",
     scenes: ["文生图", "插画创作", "图生图与编辑"],
     models: ["Phoenix", "FLUX"],
+    modelVersions: ["Phoenix 1.0", "FLUX.2"],
+    logoFile: "leonardo.png",
   },
   {
     id: "liblib",
@@ -213,6 +239,7 @@ export const tools: AIGCTool[] = [
     descriptionEn: "One of the largest Chinese model communities, running SD/FLUX online with massive LoRA and asset libraries.",
     scenes: ["模型社区", "文生图", "电商与产品"],
     models: ["Stable Diffusion", "FLUX"],
+    modelVersions: ["SD 1.5", "SDXL", "FLUX.1"],
   },
   {
     id: "civitai",
@@ -222,6 +249,7 @@ export const tools: AIGCTool[] = [
     descriptionEn: "The world's largest open-model sharing community for SD/FLUX checkpoints, LoRAs and workflows.",
     scenes: ["模型社区"],
     models: ["Stable Diffusion", "FLUX"],
+    modelVersions: ["SD 1.5", "SDXL", "FLUX.1"],
   },
   {
     id: "krea",
@@ -231,6 +259,7 @@ export const tools: AIGCTool[] = [
     descriptionEn: "Real-time generation and enhancement platform with image-to-image, inpainting and video upscaling on FLUX.",
     scenes: ["图生图与编辑", "文生图"],
     models: ["FLUX"],
+    modelVersions: ["FLUX.1", "FLUX.2"],
   },
   {
     id: "canva",
@@ -249,6 +278,8 @@ export const tools: AIGCTool[] = [
     descriptionEn: "Adobe's generative AI with commercial-friendly licensing, deeply integrated into Photoshop & Illustrator.",
     scenes: ["图生图与编辑", "海报与平面设计"],
     models: ["Firefly"],
+    modelVersions: ["Image 5"],
+    logoFile: "firefly.png",
   },
   {
     id: "whee",
