@@ -1,4 +1,25 @@
 /**
+  {
+    id: "klingai",
+    name: "Kling AI 可灵",
+    url: "https://klingai.com",
+    description: "快手 AI 创作平台，图片侧为可图 Kolors / Kling Image 系列。",
+    descriptionEn: "Kuaishou's AI creation platform; image side runs Kolors / Kling Image series.",
+    scenes: ["文生图", "人像写真"],
+    models: ["Kolors 可图"],
+    modelVersions: [],
+  },
+  {
+    id: "playground",
+    name: "Playground",
+    url: "https://playground.com",
+    description: "为平面设计打造的文生图平台（PGv3），订阅制。",
+    descriptionEn: "Text-to-image platform built for graphic design (PGv3), subscription-based.",
+    scenes: ["海报与平面设计", "文生图"],
+    models: ["Playground"],
+    modelVersions: [],
+  },
+
  * AIGC 工具导航站数据
  * 收录图像生成相关的工具/平台。基于公开信息整理，可按需增删修改。
  * 维护方式：直接编辑本文件即可，无需运行生成脚本。
@@ -264,7 +285,7 @@ export const tools: AIGCTool[] = [
     description: "实时生成与增强平台，图生图、局部重绘与视频增强，FLUX 在线可用。",
     descriptionEn: "Real-time generation and enhancement platform with image-to-image, inpainting and video upscaling on FLUX.",
     scenes: ["图生图与编辑", "文生图"],
-    models: ["FLUX"],
+    models: ["FLUX", "Krea"],
     modelVersions: ["FLUX.1", "FLUX.2"],
   },
   {
@@ -322,7 +343,7 @@ export const tools: AIGCTool[] = [
     description: "xAI 对话助手的图像生成，自研 Grok Imagine 系列。",
     descriptionEn: "xAI assistant's image generation, powered by the in-house Grok Imagine series.",
     scenes: ["文生图", "图生图与编辑"],
-    models: [],
+    models: ["Grok Imagine"],
     modelVersions: [],
   },
   {
@@ -422,7 +443,7 @@ export const tools: AIGCTool[] = [
     description: "素材平台内置 AI 图像生成（2026 年品牌更名 Magnific），自研 Mystic / F Lite 与官方 FLUX.1 合作。",
     descriptionEn: "Stock platform with built-in AI generation (rebranded Magnific in 2026): in-house Mystic/F Lite plus official FLUX.1.",
     scenes: ["海报与平面设计", "电商与产品"],
-    models: ["FLUX"],
+    models: ["FLUX", "Magnific"],
     modelVersions: ["FLUX.1"],
   },
   {
